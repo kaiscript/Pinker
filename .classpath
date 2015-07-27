@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/bean-validator.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/jackson-all-1.9.4.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/jstl.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/mysql-connector-java-5.1.5-bin.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-aop-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-aspects-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-beans-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-build-src-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-context-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-context-support-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-core-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-expression-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-framework-bom-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-instrument-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-instrument-tomcat-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-jdbc-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-jms-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-orm-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-oxm-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-struts-3.2.9.RELEASE.jar" sourcepath="E:/study/university/Spring/spring-framework-3.2.9.RELEASE-dist/spring-framework-3.2.9.RELEASE/libs/spring-struts-3.2.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-test-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-tx-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-web-3.2.9.RELEASE.jar" sourcepath="E:/study/university/Spring/spring-framework-3.2.9.RELEASE-dist/spring-framework-3.2.9.RELEASE/libs/spring-web-3.2.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-webmvc-3.2.9.RELEASE.jar" sourcepath="E:/study/university/Spring/spring-framework-3.2.9.RELEASE-dist/spring-framework-3.2.9.RELEASE/libs/spring-webmvc-3.2.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/spring-webmvc-portlet-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/Spring/alljar/standard.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/hibernate-commons-annotations-4.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/hibernate-core-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="E:/study/university/hibernate/hibernate-release-4.2.19.Final/hibernate-release-4.2.19.Final/lib/required/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>
