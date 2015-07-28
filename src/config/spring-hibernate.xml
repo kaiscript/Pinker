@@ -13,9 +13,10 @@
     <bean id="dataSource"  
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-        <property name="url" value="jdbc:mysql://127.0.0.1/course_evaluation" />  
+        <!-- <property name="url" value="jdbc:mysql://127.0.0.1/course_evaluation" />  --> 
+        <property name="url" value="jdbc:mysql://55b7708ca5ba5.gz.cdb.myqcloud.com:14247/course_evaluation" />
         <property name="username" value="root" />  
-        <property name="password" value="tear" />  
+        <property name="password" value="ck940327" />  
     </bean>  
   
   
