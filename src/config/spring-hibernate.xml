@@ -18,6 +18,28 @@
         <property name="password" value="tear" />  
     </bean>  
   
+  
+  	<!-- 数据库的连接池，通过C3P0去操作 -->
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${DATABASE.DRIVER_CLASS}" />
+		<property name="jdbcUrl" value="${DATABASE.URL}" />
+		当用户调用getConnection()时使root用户成为去获取连接的用户。主要用于连接池连接非c3p0 的数据源时。Default:null
+		<property name="overrideDefaultUser" value="${DATABASE.USERNAME}" />
+		与overrideDefaultUser参数对应使用的一个参数。Default: null
+		<property name="overrideDefaultPassword" value="${DATABASE.PASSWORD}" />
+		<property name="initialPoolSize" value="10" />
+		连接池中保留的最小连接数。
+		<property name="minPoolSize" value="10" />
+		连接池中保留的最大连接数。Default: 15
+		<property name="maxPoolSize" value="50" />
+		<property name="maxIdleTime" value="7200" />
+		当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
+		<property name="acquireIncrement" value="5" />
+		<property name="checkoutTimeout" value="10000" />
+		<property name="maxIdleTimeExcessConnections" value="10" />
+	</bean> -->
+  
     <!--  配置hibernate SessionFactory-->  
     <bean id="sessionFactory"  
         class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
