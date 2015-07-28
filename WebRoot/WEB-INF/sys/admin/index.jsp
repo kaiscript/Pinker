@@ -1,20 +1,19 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>My JSP 'hello.jsp' starting page</title>
-    
-
+    <title>My JSP 'index.jsp' starting page</title>
+    <%@ include file="head.html"  %>
+	
   </head>
   
   <body>
-   
+    This is my JSP page. <br>
   </body>
 </html>
