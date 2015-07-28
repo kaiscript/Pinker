@@ -1,5 +1,5 @@
 package org.javatribe.pinker.dao;
 
-public interface IUserDao {
+public interface UserDao {
 
 }
