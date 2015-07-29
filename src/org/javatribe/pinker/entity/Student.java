@@ -1,16 +1,26 @@
 package org.javatribe.pinker.entity;
 
+
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GenericGenerator;
+
+/**
+ * @author kaiscript
+ * 2015年7月29日 下午11:56:04
+ */
 
 @Entity
 @Table(name="student")
@@ -29,12 +39,14 @@ public class Student {
 	private String stu_pw_question;
 	private String stu_pw_answer;
 	
+	private Department department;
+	
 	public Student() {
 	}
 	
 	@Id
-	@GeneratedValue(generator="id")
-	@GenericGenerator(name="id",strategy="assigned")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(length=9)
 	public int getStu_id() {
 		return stu_id;
 	}
@@ -42,7 +54,7 @@ public class Student {
 		this.stu_id = stu_id;
 	}
 	
-	@Column(length=20)
+	@Column(length=20,nullable=false)
 	public String getStu_name() {
 		return stu_name;
 	}
@@ -50,7 +62,7 @@ public class Student {
 		this.stu_name = stu_name;
 	}
 	
-	@Column(length=20)
+	@Column(length=20,nullable=false)
 	public String getStu_password() {
 		return stu_password;
 	}
@@ -58,7 +70,7 @@ public class Student {
 		this.stu_password = stu_password;
 	}
 	
-	@Column(length=5)
+	@Column(length=5,nullable=false)
 	public String getStu_dept_id() {
 		return stu_dept_id;
 	}
@@ -66,7 +78,7 @@ public class Student {
 		this.stu_dept_id = stu_dept_id;
 	}
 	
-	@Column(length=30)
+	@Column(length=30,nullable=false)
 	public String getStu_major_id() {
 		return stu_major_id;
 	}
@@ -74,7 +86,7 @@ public class Student {
 		this.stu_major_id = stu_major_id;
 	}
 	
-	@Column(length=2)
+	@Column(length=2,nullable=false)
 	public String getStu_sex() {
 		return stu_sex;
 	}
@@ -82,7 +94,7 @@ public class Student {
 		this.stu_sex = stu_sex;
 	}
 	
-	@Column(length=255)
+	@Column(length=255,nullable=true)
 	public String getStu_per_sig() {
 		return stu_per_sig;
 	}
@@ -90,7 +102,7 @@ public class Student {
 		this.stu_per_sig = stu_per_sig;
 	}
 	
-	@Column(length=255)
+	@Column(length=255,nullable=false)
 	public String getStu_head_img() {
 		return stu_head_img;
 	}
@@ -98,7 +110,8 @@ public class Student {
 		this.stu_head_img = stu_head_img;
 	}
 	
-	@Temporal(value=TemporalType.DATE)
+	@Temporal(value=TemporalType.TIMESTAMP)
+	@Column(nullable=false)
 	public Date getStu_regist_time() {
 		return stu_regist_time;
 	}
@@ -106,7 +119,7 @@ public class Student {
 		this.stu_regist_time = stu_regist_time;
 	}
 	
-	@Column(length=255)
+	@Column(length=255,nullable=true)
 	public String getStu_attn_crs_ids() {
 		return stu_attn_crs_ids;
 	}
@@ -114,7 +127,7 @@ public class Student {
 		this.stu_attn_crs_ids = stu_attn_crs_ids;
 	}
 
-	@Column(length=64)
+	@Column(length=64,nullable=false)
 	public String getStu_pw_question() {
 		return stu_pw_question;
 	}
@@ -122,14 +135,23 @@ public class Student {
 		this.stu_pw_question = stu_pw_question;
 	}
 	
-	@Column(length=64)
+	@Column(length=64,nullable=false)
 	public String getStu_pw_answer() {
 		return stu_pw_answer;
 	}
 	public void setStu_pw_answer(String stu_pw_answer) {
 		this.stu_pw_answer = stu_pw_answer;
 	}
-	
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="department_id",nullable=false)
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 	
 	
 }

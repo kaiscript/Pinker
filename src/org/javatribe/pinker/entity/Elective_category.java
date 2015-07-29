@@ -12,13 +12,22 @@ import javax.persistence.Table;
  * 
  *         2015年7月29日 下午4:59:32
  */
-@Entity
-@Table
-public class Elective_category {
 
+@Entity
+@Table(name="elective_category")
+public class Elective_category {
+	
 	private int catg_id;
 	private String catg_name;
+	
+	public Elective_category() {
+	}
 
+	public Elective_category(int catg_id, String catg_name) {
+		this.catg_id = catg_id;
+		this.catg_name = catg_name;
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getCatg_id() {
@@ -28,7 +37,7 @@ public class Elective_category {
 	public void setCatg_id(int catg_id) {
 		this.catg_id = catg_id;
 	}
-
+	
 	@Column(length=30,nullable=false)
 	public String getCatg_name() {
 		return catg_name;
@@ -37,15 +46,6 @@ public class Elective_category {
 	public void setCatg_name(String catg_name) {
 		this.catg_name = catg_name;
 	}
-
-	public Elective_category(int catg_id, String catg_name) {
-		super();
-		this.catg_id = catg_id;
-		this.catg_name = catg_name;
-	}
-
-	public Elective_category() {
-		super();
-	}
-
+	
+	
 }
