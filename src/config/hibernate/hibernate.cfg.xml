@@ -10,5 +10,6 @@
 	<mapping class="org.javatribe.pinker.entity.Department" />
 	<mapping class="org.javatribe.pinker.entity.Major" />
 	<mapping class="org.javatribe.pinker.entity.Admin" />
+	<mapping class="org.javatribe.pinker.entity.Elective_category" />
 </session-factory>
 </hibernate-configuration>  
