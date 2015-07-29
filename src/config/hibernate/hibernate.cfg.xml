@@ -2,9 +2,13 @@
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">  
   
-<hibernate-configuration>  
-    <session-factory>  
-        <!-- 引入需要映射的类 -->  
-        <mapping class="org.javatribe.pinker.entity.Student"/>  
-    </session-factory>  
+<hibernate-configuration>
+<session-factory>
+	<!-- 引入需要映射的类 -->
+	<mapping class="org.javatribe.pinker.entity.Student" />
+	<mapping class="org.javatribe.pinker.entity.Teacher" />
+	<mapping class="org.javatribe.pinker.entity.Department" />
+	<mapping class="org.javatribe.pinker.entity.Major" />
+	<mapping class="org.javatribe.pinker.entity.Admin" />
+</session-factory>
 </hibernate-configuration>  
