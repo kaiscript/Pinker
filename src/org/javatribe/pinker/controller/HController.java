@@ -11,4 +11,9 @@ public class HController {
 	public String hello(){
 		return "admin/hello";
 	}
+	
+	@RequestMapping("index")
+	public String index() {
+		return "admin/index";
+	}
 }
