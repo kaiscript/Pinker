@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author kaiscript
- * 2015Äê7ÔÂ29ÈÕ ÏÂÎç10:25:57
+ * 2015å¹´7æœˆ29æ—¥ ä¸‹åˆ11:55:30
  */
 
 @Entity
