@@ -21,6 +21,7 @@
         <property name="username" value="${DATABASE.USERNAME}" />  
         <property name="password" value="${DATABASE.PASSWORD}" />  
     </bean>  
+
   
   
   	<!-- 数据库的连接池，通过C3P0去操作 -->

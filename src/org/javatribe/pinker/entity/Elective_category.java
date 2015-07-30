@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Mars
+ * 
+ *         2015年7月29日 下午4:59:32
+ */
 
 @Entity
 @Table(name="elective_category")
