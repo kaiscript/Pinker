@@ -20,17 +20,16 @@ public class Major {
 	
 	private int maj_id;
 	private String maj_name;
-	private int maj_dept_id;
-	
 	private Department department;
+	
 	
 	public Major() {
 	}
 
-	public Major(int maj_id, String maj_name, int maj_dept_id) {
+	public Major(int maj_id, String maj_name, Department department) {
 		this.maj_id = maj_id;
 		this.maj_name = maj_name;
-		this.maj_dept_id = maj_dept_id;
+		this.department = department;
 	}
 	
 	@Id
@@ -52,17 +51,9 @@ public class Major {
 		this.maj_name = maj_name;
 	}
 	
-	@Column(nullable=false)
-	public int getMaj_dept_id() {
-		return maj_dept_id;
-	}
-
-	public void setMaj_dept_id(int maj_dept_id) {
-		this.maj_dept_id = maj_dept_id;
-	}
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="department_id")
+	@JoinColumn(name="maj_dept_id")
 	public Department getDepartment() {
 		return department;
 	}
@@ -70,6 +61,9 @@ public class Major {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+	
+	
+	
 	
 	
 	
