@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author kaiscript
- * 2015Äê7ÔÂ28ÈÕ ÏÂÎç9:11:10
+ * 2015å¹´7æœˆ30æ—¥ ä¸‹åˆ2:58:52
  */
 
 @Service("studentService")
@@ -39,18 +39,21 @@ public class StudentServcieImpl implements StudentService {
 	}
 
 	@Override
-	public Student getStudent(String id) {
-		return stuDao.getStudent(id);
+	public Student getStudentById(String id) {
+		return stuDao.getStudentById(id);
 	}
 
 	@Override
-	public void delStudent(String id) {
-		stuDao.delStudent(id);
+	public boolean delStudent(String id) {
+		
+		return stuDao.delStudent(id);
 	}
 
 	@Override
-	public void updateStudent(Student student) {
-		stuDao.updateStudent(student);
+	public boolean updateStudent(Student student) {
+		return stuDao.updateStudent(student);
 	}
+
+	
 
 }

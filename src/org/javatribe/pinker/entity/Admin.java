@@ -1,12 +1,16 @@
 package org.javatribe.pinker.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +31,8 @@ public class Admin {
 	private String admin_password;
 	private boolean admin_is_super;
 	private Date admin_regist_time;
+	
+	private Set<Announcement> announcements=new HashSet<Announcement>();
 	
 	public Admin() {
 	}
@@ -90,6 +96,16 @@ public class Admin {
 	public void setAdmin_regist_time(Date admin_regist_time) {
 		this.admin_regist_time = admin_regist_time;
 	}
+
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="admin")
+	public Set<Announcement> getAnnouncements() {
+		return announcements;
+	}
+
+	public void setAnnouncements(Set<Announcement> announcements) {
+		this.announcements = announcements;
+	}
+	
 	
 	
 }
