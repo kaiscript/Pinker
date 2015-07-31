@@ -1,10 +1,16 @@
 package org.javatribe.pinker.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +25,8 @@ public class Elective_category {
 	
 	private int catg_id;
 	private String catg_name;
+	
+	private Set<Course> courses=new HashSet<Course>();
 	
 	public Elective_category() {
 	}
@@ -47,5 +55,13 @@ public class Elective_category {
 		this.catg_name = catg_name;
 	}
 	
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="elective_category")
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
 	
 }

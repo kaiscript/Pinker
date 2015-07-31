@@ -2,11 +2,19 @@ package org.javatribe.pinker.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.javatribe.pinker.dao.StudentDao;
 import org.javatribe.pinker.entity.Student;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @author kaiscript
+ * 2015年7月30日 下午3:00:43
+ */
 
 @Transactional
 @Repository(value = "studentDaoImpl")
@@ -29,19 +37,33 @@ public class StudentDaoImpl implements StudentDao {
 	}
 
 	@Override
-	public Student getStudent(String id) {
+	public Student getStudentById(String id) {
 		return (Student) sessionFactory.getCurrentSession().load(Student.class, id);
 	}
 
 	@Override
-	public void delStudent(String id) {
-		Student stu=this.getStudent(id);
-		sessionFactory.getCurrentSession().delete(stu);
+	public boolean delStudent(String id) {
+		String hql="del student s where s.stu_id=?";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, id);
+		return (query.executeUpdate()>0);
 	}
 
 	@Override
-	public void updateStudent(Student student) {
-		sessionFactory.getCurrentSession().update(student);
+	public boolean updateStudent(Student student) {
+		try {
+			Session session =sessionFactory.getCurrentSession();
+			session.clear();
+			session.update(student);
+			session.flush();
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
+
+	
 
 }

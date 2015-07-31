@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 
 /**
  * @author kaiscript
- * 2015年7月29日 下午11:56:04
+ * 2015年7月31日 上午11:35:07
  */
 
 @Entity
@@ -30,7 +30,7 @@ public class Student {
 	private String stu_name;
 	private String stu_password;
 	private Department department;
-	private String stu_major_id;
+	private Major major;
 	private String stu_sex;
 	private String stu_per_sig;
 	private String stu_head_img;
@@ -41,11 +41,11 @@ public class Student {
 	
 	
 	public Student() {
+		
 	}
 	
-	
 	public Student(int stu_id, String stu_name, String stu_password,
-			Department department, String stu_major_id, String stu_sex,
+			Department department, Major major, String stu_sex,
 			String stu_per_sig, String stu_head_img, Date stu_regist_time,
 			String stu_attn_crs_ids, String stu_pw_question,
 			String stu_pw_answer) {
@@ -53,7 +53,7 @@ public class Student {
 		this.stu_name = stu_name;
 		this.stu_password = stu_password;
 		this.department = department;
-		this.stu_major_id = stu_major_id;
+		this.major = major;
 		this.stu_sex = stu_sex;
 		this.stu_per_sig = stu_per_sig;
 		this.stu_head_img = stu_head_img;
@@ -90,14 +90,6 @@ public class Student {
 		this.stu_password = stu_password;
 	}
 	
-	
-	@Column(length=30,nullable=false)
-	public String getStu_major_id() {
-		return stu_major_id;
-	}
-	public void setStu_major_id(String stu_major_id) {
-		this.stu_major_id = stu_major_id;
-	}
 	
 	@Column(length=2,nullable=false)
 	public String getStu_sex() {
@@ -165,6 +157,16 @@ public class Student {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="stu_major_id",nullable=false)
+	public Major getMajor() {
+		return major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
 	}
 
 	

@@ -1,5 +1,9 @@
 package org.javatribe.pinker.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +27,8 @@ public class Major {
 	private String maj_name;
 	private Department department;
 	
+	private Set<Student> students=new HashSet<Student>();
+	private Set<Course> courses=new HashSet<Course>();
 	
 	public Major() {
 	}
@@ -52,8 +59,8 @@ public class Major {
 	}
 	
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="maj_dept_id")
+	@ManyToOne()
+	@JoinColumn(name="maj_dept_id",nullable=false)
 	public Department getDepartment() {
 		return department;
 	}
@@ -63,8 +70,23 @@ public class Major {
 	}
 	
 	
-	
-	
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="major")
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="major")
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
 	
 	
 }

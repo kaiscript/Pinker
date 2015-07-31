@@ -1,7 +1,8 @@
 package org.javatribe.pinker.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,15 +28,15 @@ public class Department implements Serializable {
 	private String dept_name;
 	private int dept_tel;
 	
-	private List<Teacher> teachers;
-	private List<Student> students;
-	private List<Major> majors;
+	private Set<Teacher> teachers =new HashSet<Teacher>();
+	private Set<Student> students=new HashSet<Student>();
+	private Set<Major> majors=new HashSet<Major>();
 	
 	public Department() {
 	}
 	
 	public Department(int dept_id, String dept_name, int dept_tel,
-			List<Teacher> teachers) {
+			Set<Teacher> teachers) {
 		this.dept_id = dept_id;
 		this.dept_name = dept_name;
 		this.dept_tel = dept_tel;
@@ -74,29 +75,29 @@ public class Department implements Serializable {
 	
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="department")
-	public List<Teacher> getTeachers() {
+	public Set<Teacher> getTeachers() {
 		return teachers;
 	}
 
-	public void setTeachers(List<Teacher> teachers) {
+	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
 	}
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="department")
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="department")
-	public List<Major> getMajors() {
+	public Set<Major> getMajors() {
 		return majors;
 	}
 
-	public void setMajors(List<Major> majors) {
+	public void setMajors(Set<Major> majors) {
 		this.majors = majors;
 	}
 	
