@@ -1,15 +1,19 @@
 package org.javatribe.pinker.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author Mars
@@ -26,10 +30,11 @@ public class Course {
 	private String crs_teacher_name;
 	private String crs_desc;
 	private int crs_avg_star;
-	private Major crs_maj;
-	private Elective_category crs_catg;
+	private Major major;
+	private Elective_category elective_category;
 	private String crs_labels;
 
+	private Set<Comment> comments = new HashSet<Comment>();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -79,22 +84,22 @@ public class Course {
 
 	@ManyToOne
 	@JoinColumn(name="crs_maj_id",nullable=true)
-	public Major getCrs_maj() {
-		return crs_maj;
+	public Major getMajor() {
+		return major;
 	}
 
-	public void setCrs_maj(Major crs_maj) {
-		this.crs_maj = crs_maj;
+	public void setMajor(Major major) {
+		this.major = major;
 	}
 
 	@ManyToOne
 	@JoinColumn(name="crs_catg_id",nullable=true)
-	public Elective_category getCrs_catg() {
-		return crs_catg;
+	public Elective_category getElective_category() {
+		return elective_category;
 	}
 
-	public void setCrs_catg(Elective_category crs_catg) {
-		this.crs_catg = crs_catg;
+	public void setElective_category(Elective_category elective_category) {
+		this.elective_category = elective_category;
 	}
 
 	@Column(length=1024, nullable=true)
@@ -106,6 +111,14 @@ public class Course {
 		this.crs_labels = crs_labels;
 	}
 
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="course")
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 
 	public Course(int crs_id, String crs_name, String crs_teacher_name,
 			String crs_desc, int crs_avg_star, Major crs_maj,
@@ -116,8 +129,8 @@ public class Course {
 		this.crs_teacher_name = crs_teacher_name;
 		this.crs_desc = crs_desc;
 		this.crs_avg_star = crs_avg_star;
-		this.crs_maj = crs_maj;
-		this.crs_catg = crs_catg;
+		this.major = crs_maj;
+		this.elective_category = crs_catg;
 		this.crs_labels = crs_labels;
 	}
 

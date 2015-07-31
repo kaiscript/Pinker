@@ -1,14 +1,19 @@
 package org.javatribe.pinker.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,9 +39,12 @@ public class Comment {
 	private int cmt_against_number;
 	private int cmt_report_number;
 	private int cmt_reply_user_id;
-	private Comment cmt_reply;
-	private Course cmt_crs;
+	private Comment comment_reply;
+	private Course course;
 
+	private Set<Comment> replay_comments = new HashSet<Comment>();
+	private Set<Report> reports = new HashSet<Report>();
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getCmt_id() {
@@ -140,22 +148,40 @@ public class Comment {
 
 	@ManyToOne
 	@JoinColumn(name="cmt_reply_id",nullable=true)
-	public Comment getCmt_reply() {
-		return cmt_reply;
+	public Comment getComment_reply() {
+		return comment_reply;
 	}
 
-	public void setCmt_reply(Comment cmt_reply) {
-		this.cmt_reply = cmt_reply;
+	public void setComment_reply(Comment cmt_reply) {
+		this.comment_reply = cmt_reply;
 	}
 
 	@ManyToOne
 	@JoinColumn(name="cmt_crs_id", nullable=false)
-	public Course getCmt_crs() {
-		return cmt_crs;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCmt_crs(Course cmt_crs) {
-		this.cmt_crs = cmt_crs;
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment")
+	public Set<Comment> getReplay_comments() {
+		return replay_comments;
+	}
+
+	public void setReplay_comments(Set<Comment> replay_comments) {
+		this.replay_comments = replay_comments;
+	}
+	
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment")
+	public Set<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(Set<Report> reports) {
+		this.reports = reports;
 	}
 
 	public Comment(int cmt_id, int cmt_user_id, Date cmt_time,
@@ -175,8 +201,8 @@ public class Comment {
 		this.cmt_against_number = cmt_against_number;
 		this.cmt_report_number = cmt_report_number;
 		this.cmt_reply_user_id = cmt_reply_user_id;
-		this.cmt_reply = cmt_reply;
-		this.cmt_crs = cmt_crs;
+		this.comment_reply = cmt_reply;
+		this.course = cmt_crs;
 	}
 
 	public Comment() {

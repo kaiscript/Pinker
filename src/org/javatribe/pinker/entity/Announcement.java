@@ -24,7 +24,7 @@ public class Announcement {
 	private int annc_id;
 	private String annc_content;
 	private Date annc_time;
-	private Admin annc_publisher;
+	private Admin publisher;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,12 +57,12 @@ public class Announcement {
 
 	@ManyToOne
 	@JoinColumn(name="annc_publisher",nullable=false)
-	public Admin getAnnc_publisher() {
-		return annc_publisher;
+	public Admin getPublisher() {
+		return publisher;
 	}
 
-	public void setAnnc_publisher(Admin annc_publisher) {
-		this.annc_publisher = annc_publisher;
+	public void setPublisher(Admin annc_publisher) {
+		this.publisher = annc_publisher;
 	}
 
 	public Announcement() {
@@ -75,7 +75,7 @@ public class Announcement {
 		this.annc_id = annc_id;
 		this.annc_content = annc_content;
 		this.annc_time = annc_time;
-		this.annc_publisher = annc_publisher;
+		this.publisher = annc_publisher;
 	}
 
 }
