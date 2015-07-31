@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -24,8 +26,8 @@ public class Course {
 	private String crs_teacher_name;
 	private String crs_desc;
 	private int crs_avg_star;
-	private int crs_maj_id;
-	private int crs_catg_id;
+	private Major crs_maj;
+	private Elective_category crs_catg;
 	private String crs_labels;
 
 	
@@ -75,22 +77,24 @@ public class Course {
 		this.crs_avg_star = crs_avg_star;
 	}
 
-	@Column(length=5, nullable=true)
-	public int getCrs_maj_id() {
-		return crs_maj_id;
+	@ManyToOne
+	@JoinColumn(name="crs_maj_id",nullable=true)
+	public Major getCrs_maj() {
+		return crs_maj;
 	}
 
-	public void setCrs_maj_id(int crs_maj_id) {
-		this.crs_maj_id = crs_maj_id;
+	public void setCrs_maj(Major crs_maj) {
+		this.crs_maj = crs_maj;
 	}
 
-	@Column(length=5, nullable=true)
-	public int getCrs_catg_id() {
-		return crs_catg_id;
+	@ManyToOne
+	@JoinColumn(name="crs_catg_id",nullable=true)
+	public Elective_category getCrs_catg() {
+		return crs_catg;
 	}
 
-	public void setCrs_catg_id(int crs_catg_id) {
-		this.crs_catg_id = crs_catg_id;
+	public void setCrs_catg(Elective_category crs_catg) {
+		this.crs_catg = crs_catg;
 	}
 
 	@Column(length=1024, nullable=true)
@@ -102,17 +106,18 @@ public class Course {
 		this.crs_labels = crs_labels;
 	}
 
+
 	public Course(int crs_id, String crs_name, String crs_teacher_name,
-			String crs_desc, int crs_avg_star, int crs_maj_id, int crs_catg_id,
-			String crs_labels) {
+			String crs_desc, int crs_avg_star, Major crs_maj,
+			Elective_category crs_catg, String crs_labels) {
 		super();
 		this.crs_id = crs_id;
 		this.crs_name = crs_name;
 		this.crs_teacher_name = crs_teacher_name;
 		this.crs_desc = crs_desc;
 		this.crs_avg_star = crs_avg_star;
-		this.crs_maj_id = crs_maj_id;
-		this.crs_catg_id = crs_catg_id;
+		this.crs_maj = crs_maj;
+		this.crs_catg = crs_catg;
 		this.crs_labels = crs_labels;
 	}
 

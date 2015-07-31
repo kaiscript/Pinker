@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,8 +34,8 @@ public class Comment {
 	private int cmt_against_number;
 	private int cmt_report_number;
 	private int cmt_reply_user_id;
-	private int cmt_reply_id;
-	private int cmt_crs_id;
+	private Comment cmt_reply;
+	private Course cmt_crs;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -136,29 +138,31 @@ public class Comment {
 		this.cmt_reply_user_id = cmt_replay_user_id;
 	}
 
-	@Column(length=5, nullable=true)
-	public int getCmt_reply_id() {
-		return cmt_reply_id;
+	@ManyToOne
+	@JoinColumn(name="cmt_reply_id",nullable=true)
+	public Comment getCmt_reply() {
+		return cmt_reply;
 	}
 
-	public void setCmt_reply_id(int cmt_reply_id) {
-		this.cmt_reply_id = cmt_reply_id;
+	public void setCmt_reply(Comment cmt_reply) {
+		this.cmt_reply = cmt_reply;
 	}
 
-	@Column(length=8, nullable=false)
-	public int getCmt_crs_id() {
-		return cmt_crs_id;
+	@ManyToOne
+	@JoinColumn(name="cmt_crs_id", nullable=false)
+	public Course getCmt_crs() {
+		return cmt_crs;
 	}
 
-	public void setCmt_crs_id(int cmt_crs_id) {
-		this.cmt_crs_id = cmt_crs_id;
+	public void setCmt_crs(Course cmt_crs) {
+		this.cmt_crs = cmt_crs;
 	}
 
 	public Comment(int cmt_id, int cmt_user_id, Date cmt_time,
 			String cmt_crs_label, String cmt_content, int cmt_star,
 			boolean cmt_is_anon, int cmt_like_number, int cmt_against_number,
-			int cmt_report_number, int cmt_replay_user_id, int cmt_reply_id,
-			int cmt_crs_id) {
+			int cmt_report_number, int cmt_reply_user_id, Comment cmt_reply,
+			Course cmt_crs) {
 		super();
 		this.cmt_id = cmt_id;
 		this.cmt_user_id = cmt_user_id;
@@ -170,9 +174,9 @@ public class Comment {
 		this.cmt_like_number = cmt_like_number;
 		this.cmt_against_number = cmt_against_number;
 		this.cmt_report_number = cmt_report_number;
-		this.cmt_reply_user_id = cmt_replay_user_id;
-		this.cmt_reply_id = cmt_reply_id;
-		this.cmt_crs_id = cmt_crs_id;
+		this.cmt_reply_user_id = cmt_reply_user_id;
+		this.cmt_reply = cmt_reply;
+		this.cmt_crs = cmt_crs;
 	}
 
 	public Comment() {
