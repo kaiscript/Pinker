@@ -26,7 +26,7 @@ public class Teacher {
 	private int tch_id;
 	private String tch_name;
 	private String tch_password;
-	private int tch_dept_id;
+	
 	private String tch_sex;
 	private String tch_per_sig;
 	private String tch_head_img;
@@ -40,12 +40,11 @@ public class Teacher {
 
 	
 	public Teacher(int tch_id, String tch_name, String tch_password,
-			int tch_dept_id, String tch_sex, String tch_per_sig,
+			String tch_sex, String tch_per_sig,
 			String tch_head_img, Date tch_regist_time, Department department) {
 		this.tch_id = tch_id;
 		this.tch_name = tch_name;
 		this.tch_password = tch_password;
-		this.tch_dept_id = tch_dept_id;
 		this.tch_sex = tch_sex;
 		this.tch_per_sig = tch_per_sig;
 		this.tch_head_img = tch_head_img;
@@ -81,13 +80,6 @@ public class Teacher {
 		this.tch_password = tch_password;
 	}
 	
-	@Column(length=5,nullable=false)
-	public int getTch_dept_id() {
-		return tch_dept_id;
-	}
-	public void setTch_dept_id(int tch_dept_id) {
-		this.tch_dept_id = tch_dept_id;
-	}
 	
 	@Column(length=2,nullable=false)
 	public String getTch_sex() {
@@ -124,7 +116,7 @@ public class Teacher {
 	
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="department_id",nullable=false)
+	@JoinColumn(name="tch_dept_id",nullable=false)
 	public Department getDepartment() {
 		return department;
 	}

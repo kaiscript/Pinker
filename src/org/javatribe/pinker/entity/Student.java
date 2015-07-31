@@ -29,7 +29,7 @@ public class Student {
 	private int stu_id;
 	private String stu_name;
 	private String stu_password;
-	private String stu_dept_id;
+	private Department department;
 	private String stu_major_id;
 	private String stu_sex;
 	private String stu_per_sig;
@@ -39,11 +39,31 @@ public class Student {
 	private String stu_pw_question;
 	private String stu_pw_answer;
 	
-	private Department department;
 	
 	public Student() {
 	}
 	
+	
+	public Student(int stu_id, String stu_name, String stu_password,
+			Department department, String stu_major_id, String stu_sex,
+			String stu_per_sig, String stu_head_img, Date stu_regist_time,
+			String stu_attn_crs_ids, String stu_pw_question,
+			String stu_pw_answer) {
+		this.stu_id = stu_id;
+		this.stu_name = stu_name;
+		this.stu_password = stu_password;
+		this.department = department;
+		this.stu_major_id = stu_major_id;
+		this.stu_sex = stu_sex;
+		this.stu_per_sig = stu_per_sig;
+		this.stu_head_img = stu_head_img;
+		this.stu_regist_time = stu_regist_time;
+		this.stu_attn_crs_ids = stu_attn_crs_ids;
+		this.stu_pw_question = stu_pw_question;
+		this.stu_pw_answer = stu_pw_answer;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(length=9)
@@ -70,13 +90,6 @@ public class Student {
 		this.stu_password = stu_password;
 	}
 	
-	@Column(length=5,nullable=false)
-	public String getStu_dept_id() {
-		return stu_dept_id;
-	}
-	public void setStu_dept_id(String stu_dept_id) {
-		this.stu_dept_id = stu_dept_id;
-	}
 	
 	@Column(length=30,nullable=false)
 	public String getStu_major_id() {
@@ -143,8 +156,9 @@ public class Student {
 		this.stu_pw_answer = stu_pw_answer;
 	}
 
+	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="department_id",nullable=false)
+	@JoinColumn(name="stu_dept_id",nullable=false)
 	public Department getDepartment() {
 		return department;
 	}
@@ -152,6 +166,6 @@ public class Student {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	
+
 	
 }
