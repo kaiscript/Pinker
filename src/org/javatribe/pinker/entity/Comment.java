@@ -42,7 +42,7 @@ public class Comment {
 	private Comment comment_reply;
 	private Course course;
 
-	private Set<Comment> replay_comments = new HashSet<Comment>();
+	private Set<Comment> reply_comments = new HashSet<Comment>();
 	private Set<Report> reports = new HashSet<Report>();
 	
 	@Id
@@ -166,13 +166,13 @@ public class Comment {
 		this.course = course;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment")
-	public Set<Comment> getReplay_comments() {
-		return replay_comments;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment_reply")
+	public Set<Comment> getReply_comments() {
+		return reply_comments;
 	}
 
-	public void setReplay_comments(Set<Comment> replay_comments) {
-		this.replay_comments = replay_comments;
+	public void setReply_comments(Set<Comment> reply_comments) {
+		this.reply_comments = reply_comments;
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment")

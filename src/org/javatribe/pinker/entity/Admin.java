@@ -97,7 +97,7 @@ public class Admin {
 		this.admin_regist_time = admin_regist_time;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="admin")
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="publisher")
 	public Set<Announcement> getAnnouncements() {
 		return announcements;
 	}
@@ -105,7 +105,6 @@ public class Admin {
 	public void setAnnouncements(Set<Announcement> announcements) {
 		this.announcements = announcements;
 	}
-	
 	
 	
 }

@@ -33,22 +33,20 @@ public class Report {
 
 	@ManyToOne
 	@JoinColumn(name="rpt_cmt_id",nullable=false)
-	public Comment getRpt_cmt() {
+	public Comment getComment() {
 		return comment;
 	}
 
-	public void setRpt_cmt(Comment rpt_cmt_id) {
+	public void setComment(Comment comment) {
 		this.comment = comment;
 	}
 
-	public Report(int rpt_id, Comment rpt_cmt_id) {
-		super();
+	public Report(int rpt_id, Comment comment) {
 		this.rpt_id = rpt_id;
 		this.comment = comment;
 	}
 
 	public Report() {
-		super();
 	}
 
 }

@@ -25,7 +25,7 @@ public class Announcement {
 	private String annc_content;
 	private Date annc_time;
 	private Admin publisher;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getAnnc_id() {
