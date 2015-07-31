@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +21,7 @@ import javax.persistence.Table;
 public class Report {
 
 	private int rpt_id;
-	private int rpt_cmt_id;
+	private Comment rpt_cmt;  
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -30,19 +33,20 @@ public class Report {
 		this.rpt_id = rpt_id;
 	}
 
-	@Column(name="rpt_cmt_id", length=8, nullable=false)
-	public int getRpt_cmt_id() {
-		return rpt_cmt_id;
+	@ManyToOne
+	@JoinColumn(name="rpt_cmt_id",nullable=false)
+	public Comment getRpt_cmt() {
+		return rpt_cmt;
 	}
 
-	public void setRpt_cmt_id(int rpt_cmt_id) {
-		this.rpt_cmt_id = rpt_cmt_id;
+	public void setRpt_cmt(Comment rpt_cmt_id) {
+		this.rpt_cmt = rpt_cmt_id;
 	}
 
-	public Report(int rpt_id, int rpt_cmt_id) {
+	public Report(int rpt_id, Comment rpt_cmt_id) {
 		super();
 		this.rpt_id = rpt_id;
-		this.rpt_cmt_id = rpt_cmt_id;
+		this.rpt_cmt = rpt_cmt_id;
 	}
 
 	public Report() {

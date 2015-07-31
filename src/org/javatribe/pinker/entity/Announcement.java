@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,16 +18,16 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name="announcement")
+@Table(name = "announcement")
 public class Announcement {
 
 	private int annc_id;
 	private String annc_content;
 	private Date annc_time;
-	private String annc_publisher;
+	private Admin annc_publisher;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getAnnc_id() {
 		return annc_id;
 	}
@@ -34,7 +36,7 @@ public class Announcement {
 		this.annc_id = annc_id;
 	}
 
-	@Column(name="annc_content",length=10240, nullable=false )
+	@Column(name = "annc_content", length = 10240, nullable = false)
 	public String getAnnc_content() {
 		return annc_content;
 	}
@@ -44,7 +46,7 @@ public class Announcement {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="annc_time",nullable=false)
+	@Column(name = "annc_time", nullable = false)
 	public Date getAnnc_time() {
 		return annc_time;
 	}
@@ -53,12 +55,13 @@ public class Announcement {
 		this.annc_time = annc_time;
 	}
 
-	@Column(name="annc_publisher", length=20, nullable=false)
-	public String getAnnc_publisher() {
+	@ManyToOne
+	@JoinColumn(name="annc_publisher",nullable=false)
+	public Admin getAnnc_publisher() {
 		return annc_publisher;
 	}
 
-	public void setAnnc_publisher(String annc_publisher) {
+	public void setAnnc_publisher(Admin annc_publisher) {
 		this.annc_publisher = annc_publisher;
 	}
 
@@ -67,7 +70,7 @@ public class Announcement {
 	}
 
 	public Announcement(int annc_id, String annc_content, Date annc_time,
-			String annc_publisher) {
+			Admin annc_publisher) {
 		super();
 		this.annc_id = annc_id;
 		this.annc_content = annc_content;
