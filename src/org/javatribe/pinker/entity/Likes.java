@@ -28,7 +28,7 @@ public class Likes {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(length=8, nullable=false)
+	@Column(nullable=false)
 	public int getLike_id() {
 		return like_id;
 	}
@@ -37,7 +37,7 @@ public class Likes {
 		this.like_id = like_id;
 	}
 
-	@Column(length=8, nullable=false)
+	@Column(nullable=false)
 	public int getLike_cmt_id() {
 		return like_cmt_id;
 	}
@@ -46,7 +46,7 @@ public class Likes {
 		this.like_cmt_id = like_cmt_id;
 	}
 
-	@Column(length=15, nullable=false)
+	@Column(nullable=false)
 	public int getLike_user_id() {
 		return like_user_id;
 	}
@@ -65,7 +65,7 @@ public class Likes {
 		this.like_time = like_time;
 	}
 
-	@Column(length=8, nullable=false)
+	@Column(nullable=false)
 	public int getLike_cmt_user_id() {
 		return like_cmt_user_id;
 	}

@@ -149,7 +149,7 @@ public class Student {
 	}
 
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name="stu_dept_id",nullable=false)
 	public Department getDepartment() {
 		return department;
@@ -159,7 +159,7 @@ public class Student {
 		this.department = department;
 	}
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name="stu_major_id",nullable=false)
 	public Major getMajor() {
 		return major;
