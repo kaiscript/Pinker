@@ -1,19 +1,13 @@
 package org.javatribe.pinker.dao;
 
-import java.util.List;
-
 import org.javatribe.pinker.entity.Student;
 
 /**
  * @author kaiscript
- * 2015年7月30日 下午3:04:09
+ * 2015年8月15日 下午6:47:48
  */
 
-public interface StudentDao {
+public interface StudentDao extends BaseDao<Student> {
 	
-	public void addStudent(Student student);
-	public List<Student> getAllStudent();
-	public Student getStudentById(String id);
-	public boolean delStudent(String id);
-	public boolean updateStudent(Student student);
+	
 }

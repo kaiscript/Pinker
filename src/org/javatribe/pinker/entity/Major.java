@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * @author kaiscript
  * 2015年7月29日 下午11:55:57
@@ -61,6 +63,7 @@ public class Major {
 	
 	@ManyToOne()
 	@JoinColumn(name="maj_dept_id",nullable=false)
+	@JsonIgnore
 	public Department getDepartment() {
 		return department;
 	}
@@ -71,6 +74,7 @@ public class Major {
 	
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="major")
+	@JsonIgnore
 	public Set<Student> getStudents() {
 		return students;
 	}
@@ -80,6 +84,7 @@ public class Major {
 	}
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="major")
+	@JsonIgnore
 	public Set<Course> getCourses() {
 		return courses;
 	}

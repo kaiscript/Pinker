@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/sys/head.html=UTF-8
+encoding//WebRoot/WEB-INF/sys/nav.html=UTF-8
 encoding//src/org/javatribe/pinker/controller/HController.java=UTF-8
 encoding/<project>=UTF-8

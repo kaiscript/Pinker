@@ -12,7 +12,7 @@ public class HController {
 		return "admin/hello";
 	}
 
-	@RequestMapping("index")
+	@RequestMapping("/index")
 	public String index() {
 		return "admin/index";
 	}

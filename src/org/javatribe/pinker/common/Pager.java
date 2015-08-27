@@ -2,35 +2,139 @@ package org.javatribe.pinker.common;
 
 import java.util.List;
 
-public class Pager<T> {
+
+/**
+ * @author kaiscript
+ * 2015年8月2日 下午5:13:26
+ */
+public class Pager {
 	
-	private List<T> datas;
-	private int offset;
-	private int size;
-	private long total;
-	public List<T> getDatas() {
+	/**
+	 * 每页记录
+	 */
+	private int pageSize;
+	/**
+	 * 当前页码
+	 */
+	private int pageIndex;
+	/**
+	 * 总记录数
+	 */
+	private int totalCount;
+	/**
+	 * 总页数
+	 */
+	private int totalPage;
+	/**
+	 * 数据结果
+	 */
+	private List<?> datas;
+	/**
+	 * 是否有下一页
+	 */
+	private boolean hasNextPage;
+	/**
+	 * 是否有上一页
+	 */
+	private boolean hasPreviousPage;
+	
+	public void init(){
+		
+		previousPage();
+		nextPage();
+		totalPage();
+	}
+	
+	/**
+	 * 初始化 总页数
+	 */
+	public void totalPage() {
+		if(totalCount % pageSize == 0 ){
+			totalPage = totalCount / pageSize;
+		}
+		else{
+			totalPage = totalCount / pageSize + 1;
+		}
+		
+	}
+	/**
+	 * 初始化 是否有上一页 参数 hasPreviousPage
+	 */
+	public void previousPage(){
+		if(pageIndex == 1){
+			hasPreviousPage = false;
+		}
+		else{
+			hasPreviousPage = true;
+		}
+	}
+	/**
+	 * 初始化 是否有下一页 参数 hasNextPage
+	 */
+	public void nextPage(){
+		if(pageIndex == totalPage){
+			hasNextPage =false;
+		}
+		else{
+			hasNextPage =true;
+		}
+	}
+	
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public List<?> getDatas() {
 		return datas;
 	}
-	public void setDatas(List<T> datas) {
+
+	public void setDatas(List<?> datas) {
 		this.datas = datas;
 	}
-	public int getOffset() {
-		return offset;
+
+	public boolean isHasNextPage() {
+		return hasNextPage;
 	}
-	public void setOffset(int offset) {
-		this.offset = offset;
+
+	public void setHasNextPage(boolean hasNextPage) {
+		this.hasNextPage = hasNextPage;
 	}
-	public int getSize() {
-		return size;
+
+	public boolean isHasPreviousPage() {
+		return hasPreviousPage;
 	}
-	public void setSize(int size) {
-		this.size = size;
+
+	public void setHasPreviousPage(boolean hasPreviousPage) {
+		this.hasPreviousPage = hasPreviousPage;
 	}
-	public long getTotal() {
-		return total;
-	}
-	public void setTotal(long total) {
-		this.total = total;
-	}
+	
 	
 }

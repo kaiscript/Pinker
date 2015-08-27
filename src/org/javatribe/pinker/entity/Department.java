@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 /**
  * @author kaiscript
  * 2015年7月29日 下午11:55:39
@@ -78,7 +79,6 @@ public class Department implements Serializable {
 	public Set<Teacher> getTeachers() {
 		return teachers;
 	}
-
 	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
 	}
@@ -87,7 +87,6 @@ public class Department implements Serializable {
 	public Set<Student> getStudents() {
 		return students;
 	}
-
 	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
@@ -96,7 +95,6 @@ public class Department implements Serializable {
 	public Set<Major> getMajors() {
 		return majors;
 	}
-
 	public void setMajors(Set<Major> majors) {
 		this.majors = majors;
 	}
