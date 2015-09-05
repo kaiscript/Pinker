@@ -38,14 +38,14 @@
 	<!--按需增侧边导航-->
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
+			<div class="col-sm-1">
+				<!-- <ul class="nav nav-sidebar">
 					<li><a href="admin/student/list">学生管理</a></li>
 					<li><a href="#">教师管理</a></li>
 					<li><a href="#">XXX</a></li>
-				</ul>
+				</ul> -->
 			</div>
-			<div class="col-sm-9 col-md-10">
+			<div class="col-sm-11">
 				<h1 class="page-header">学生信息</h1>
 
 				<h2 class="sub-header">xxx</h2>
