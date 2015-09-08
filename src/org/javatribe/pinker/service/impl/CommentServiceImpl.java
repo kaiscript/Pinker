@@ -1,0 +1,69 @@
+package org.javatribe.pinker.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.javatribe.pinker.common.Pager;
+import org.javatribe.pinker.dao.CommentDao;
+import org.javatribe.pinker.entity.Comment;
+import org.javatribe.pinker.service.CommentService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @author Mars
+ *
+ *2015年9月7日 下午4:26:43
+ */
+
+@Service("commentServiceImpl")
+@Transactional
+public class CommentServiceImpl implements CommentService {
+
+	@Resource(name="commentDaoImpl")
+	CommentDao commentDao;
+	
+	@Override
+	public boolean save(Comment comment) {
+		// TODO Auto-generated method stub
+		return commentDao.save(comment);
+	}
+
+	@Override
+	public boolean delete(Comment comment) {
+		// TODO Auto-generated method stub
+		return commentDao.delete(comment);
+	}
+
+	@Override
+	public boolean update(Comment comment) {
+		// TODO Auto-generated method stub
+		return commentDao.update(comment);
+	}
+
+	@Override
+	public Comment getById(Integer id) {
+		// TODO Auto-generated method stub
+		return commentDao.get(id);
+	}
+
+	@Override
+	public List<Comment> getByIdSet(Integer[] ids) {
+		// TODO Auto-generated method stub
+		return commentDao.getByIdSet(ids);
+	}
+
+	@Override
+	public List<Comment> getAllList() {
+		// TODO Auto-generated method stub
+		return commentDao.getAllList();
+	}
+
+	@Override
+	public Pager findByPager(Pager pager) {
+		// TODO Auto-generated method stub
+		return commentDao.findByPager(pager);
+	}
+
+}
