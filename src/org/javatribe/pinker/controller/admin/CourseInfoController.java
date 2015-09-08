@@ -48,7 +48,7 @@ public class CourseInfoController {
 		if(pager.getTotalCount()==0){
 			pager = new Pager();
 			pager.setPageIndex(1);
-			pager.setPageSize(1);
+			pager.setPageSize(5);
 			pager.setHasPreviousPage(false);
 		}
 		

@@ -5,7 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ include file="../nav.html"%>
 <%@ include file="../head.html"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -51,10 +51,8 @@
 			<div class="input-group">
 				<form action="" method="">
 					<input type="text" class="form-control"
-						placeholder="搜索课程，用课程名 / 教师名搜索"> <span
-						class="input-group-btn"> <input type="submit"
-						class="btn btn-default" value="Go !" /> <input type="submit"
-						class="btn btn-default" value="Go !" />
+						placeholder="搜索课程，用课程名 / 教师名搜索"> <span class="input-group-btn"> <input type="submit"
+						class="btn btn-default" value="Go !" /> 
 				</form>
 				</span>
 			</div>
@@ -93,11 +91,9 @@
 					</c:if>
 					<td>${c.cmt_like_number }/${c.cmt_against_number }</td>
 					<td>${c.cmt_report_number }</td>
-					<td><a href="admin/comment/delete?id=${ c.cmt_id}"><button class="btn btn-success"
-							onclick="window.location.href='admin/comment/delete?id='+c.cmt_id;">删除</button></a>
-							<input type="button" value="新郎" onclick="location.href='http://www.sina.com.cn';">
-							</td>
-							<!-- data-target=".bs-example-modal-sm" 	data-target="#deleteConfirmModal" data-toggle="modal" -->
+					<td><a href="admin/comment/delete?id=${ c.cmt_id}"><button
+								class="btn btn-success">删除</button></a></td>
+					<!-- data-target=".bs-example-modal-sm" 	data-target="#deleteConfirmModal" data-toggle="modal" -->
 				</tr>
 			</c:forEach>
 			<tr>
@@ -154,7 +150,8 @@
 				<td><span class="glyphicon glyphicon glyphicon glyphicon-ok"
 					aria-hidden="true"></span></td>
 				<td>
-					<button class="btn btn-success"  onclick="window.location.href('"admin/comment/list?pageIndex=" + index')">删除</button>
+					<button class="btn btn-success" onclick="window.location.href('"
+						admin/comment/list?pageIndex=" + index')">删除</button>
 				</td>
 			</tr>
 
@@ -209,12 +206,10 @@
 							aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">删除确认</h4>
 					</div>
-					<div class="modal-body">
-						确认删除该条？
-					</div>
+					<div class="modal-body">确认删除该条？</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="alert('删除');">确定
-						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							onclick="alert('删除');">确定</button>
 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
 					</div>
 				</div>
