@@ -59,6 +59,12 @@ public class StudentInfoController {
 		return "redirect:/admin/student/list";
 	}
 	
+	/**
+	 * 访问学生列表页面
+	 * @param model
+	 * @param pager 分页变量
+	 * @return 跳转到学生列表页面 student/list
+	 */
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(Model model ,Pager pager){
 		if(pager.getTotalCount()==0){
@@ -71,9 +77,16 @@ public class StudentInfoController {
 		pager =studentService.findByPager(pager);
 		pager.init();
 		model.addAttribute("studentPager", pager);
-		return "admin/list";
+		return "student/list";
 	}
 	
+	/**
+	 * 
+	 * @param pageIndex 第几页
+	 * @param model
+	 * @param pager
+	 * @return 跳转到学生列表页面 student/list
+	 */
 	@RequestMapping(value="/list",method=RequestMethod.POST)
 	public String listByIndexPage(@RequestParam("pageIndex") int pageIndex,Model model ,Pager pager){
 		if(pager.getTotalCount()==0){
@@ -88,9 +101,15 @@ public class StudentInfoController {
 		pager =studentService.findByPager(pager);
 		pager.init();
 		model.addAttribute("studentPager", pager);
-		return "admin/list";
+		return "student/list";
 	}
 	
+	/**
+	 * 访问修改学生信息页面
+	 * @param stuId 学生id
+	 * @param model
+	 * @return 跳转到 修改学生信息页面
+	 */
 	@RequestMapping(value="/editStudent/id{stuId}")
 	public String editStudentInfo(@PathVariable int stuId,Model model){
 		Student student =new Student();
@@ -101,9 +120,18 @@ public class StudentInfoController {
 		model.addAttribute("department", getDepartmentList());
 		model.addAttribute("major", getMajorList(student.getDepartment().getDept_id()));
 		model.addAttribute("question", new Question().getQuestions());
-		return "admin/editStudentInfo";
+		return "student/editStudentInfo";
 	}
 	
+	/**
+	 * 
+	 * @param student 学生实体
+	 * @param departmentId 系id
+	 * @param majorId 专业id
+	 * @param time 注册时间
+	 * @param model
+	 * @return 返回修改学生信息页面或错误页面
+	 */
 	@RequestMapping(value="/updateStudent")
 	public String updateStudent(@ModelAttribute("student")Student student ,@RequestParam("departmentId") String departmentId
 			,@RequestParam("majorId") String majorId,@RequestParam("registTime") String time,Model model){
@@ -121,18 +149,26 @@ public class StudentInfoController {
 			model.addAttribute("department", getDepartmentList());
 			model.addAttribute("major", getMajorList(student.getDepartment().getDept_id()));
 			model.addAttribute("question", new Question().getQuestions());
-			return "admin/editStudentInfo";
+			return "student/editStudentInfo";
 		}
 		return "error";
 	}
 	
-	
+	/**
+	 * 取得系集合
+	 * @return 系集合
+	 */
 	public List<Department> getDepartmentList(){
 		List<Department> departmentsList =new ArrayList<Department>();
 		departmentsList =(List<Department>)departmentService.getAllList();
 		return departmentsList;
 	}
 	
+	/**
+	 * 根据系id获取对应系的专业集合
+	 * @param departmentId 系id
+	 * @return 专业集合
+	 */
 	public List<Major> getMajorList(int departmentId){
 		List<Major> majorList=new ArrayList<Major>();
 		majorList=(List<Major>)majorService.getMajorsByDepartmentId(departmentId);

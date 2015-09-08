@@ -29,7 +29,11 @@ public class MajorInfoController {
 		this.majorService = majorService;
 	}
 
-
+	/**
+	 * 
+	 * @param departmentId
+	 * @return 对应系的专业集合
+	 */
 	@RequestMapping(value="/getMajorSelect/{departmentId}",method =RequestMethod.POST,params="json")
 	@ResponseBody
 	public List<Major> getMajorJson(@PathVariable int departmentId){

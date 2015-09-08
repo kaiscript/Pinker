@@ -10,6 +10,6 @@ public class adminTestController {
 	
 	@RequestMapping("/test")
 	public String test(){
-		return "admin/admintest";
+		return "test/admintest";
 	}
 }
