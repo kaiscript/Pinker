@@ -22,6 +22,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Resource(name="departmentDaoImpl")
 	DepartmentDao departmentDao;
 	
+	
 	@Override
 	public List<Department> getAllList() {
 		return departmentDao.getAllList();

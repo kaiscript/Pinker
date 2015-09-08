@@ -9,7 +9,11 @@ import java.util.Date;
  * 2015年8月28日 上午12:02:49
  */
 public class FormatTrans {
-	
+	/**
+	 * 字符串转换为Date类型
+	 * @param time
+	 * @return
+	 */
 	public static Date stringToDate(String time){
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date timeDate=null;

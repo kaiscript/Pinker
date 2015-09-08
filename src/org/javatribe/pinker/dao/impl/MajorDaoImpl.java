@@ -16,7 +16,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository(value="majorDaoImpl")
 public class MajorDaoImpl extends BaseDaoImpl<Major> implements MajorDao {
-
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Major> getMajorsByDepartmentId(int departmentId) {
