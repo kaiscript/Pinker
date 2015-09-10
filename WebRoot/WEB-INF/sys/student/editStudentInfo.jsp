@@ -12,41 +12,64 @@
 <base href="<%=basePath%>">
 
 <%@ include file="../head.html"%>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <title>学生信息编辑</title>
 
 <script type="text/javascript">
-	function changeMajorSelect(majorId){
+	function changeMajorSelect(majorId) {
 		var req;
-		var id=majorId;
-		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-		  req=new XMLHttpRequest();
-		  }
-		else{// code for IE6, IE5
-		  req=new ActiveXObject("Microsoft.XMLHTTP");
-		  }
-		
-		req.onreadystatechange=function(){
-			if(req.readyState ==4 && req.status ==200){
-				
-				var major="{\"majors\":"+req.responseText+"}";
-				obj=JSON.parse(major);
+		var id = majorId;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			req = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			req = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		req.onreadystatechange = function() {
+			if (req.readyState == 4 && req.status == 200) {
+
+				var major = "{\"majors\":" + req.responseText + "}";
+				obj = JSON.parse(major);
 				//alert(obj.majors[2].maj_name);
-				var select =document.getElementById("selectMajor");
-				select.length=1;
-				select.options[0].text="请选择";
-				for(var i=0;i<select.length;i++){
-					var op=document.createElement('option');
-					op.text=obj.majors[i].maj_name;
-					op.value=obj.majors[i].maj_id;
-					if(op.value==id){
-						op.selected=true;
+				var select = document.getElementById("selectMajor");
+				select.length = 1;
+				select.options[0].text = "请选择";
+				for (var i = 0; i < select.length; i++) {
+					var op = document.createElement('option');
+					op.text = obj.majors[i].maj_name;
+					op.value = obj.majors[i].maj_id;
+					if (op.value == id) {
+						op.selected = true;
 					}
-					select.add(op,null);
+					select.add(op, null);
 				}
 			}
 		};
-		req.open("POST","major/getMajorSelect/"+$("#selectDepartment").val()+"?json",true);
+		req.open("POST", "major/getMajorSelect/" + $("#selectDepartment").val()
+				+ "?json", true);
 		req.send(null);
+	}
+	
+	/**
+	* 上传图片
+	*/
+	function uploadPic(){
+		
+		$.ajaxFileUpload({
+	        url:'pic/upload',
+	        secureuri:false,                       //是否启用安全提交,默认为false
+	        fileElementId:'photo',           //文件选择框的id属性
+	        dataType:'json',                       //服务器返回的格式,可以是json或xml等
+	        success:function(data, status){        //服务器响应成功时的处理函数
+	            if(status=="success"){
+	            	alert("上传成功");
+	            }
+	        	
+	        	$("#headImg").attr("src","pic/"+data.photoName);
+	        	$("#hiddenHeadImg").attr("value","pic/"+data.photoName);
+	        },
+	        
+	    });
 	}
 	
 </script>
@@ -95,7 +118,8 @@
 								<label for="select" class="col-lg-2 control-label">系别</label>
 								<div class="col-lg-10">
 									<select class="form-control" id="selectDepartment"
-										name="departmentId" onchange="changeMajorSelect(${student.major.maj_id })">
+										name="departmentId"
+										onchange="changeMajorSelect(${student.major.maj_id })">
 										<c:forEach items="${department }" var="d">
 											<c:if test="${d.dept_name == student.department.dept_name}">
 												<option value="${d.dept_id }" selected="selected">${d.dept_name }</option>
@@ -126,18 +150,20 @@
 									</select>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="passwordQuestion" class="col-lg-2 control-label">密码</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="stu_password" value="${student.stu_password }">
+									<input type="text" class="form-control" name="stu_password"
+										value="${student.stu_password }">
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="passwordQuestion" class="col-lg-2 control-label">密保问题</label>
 								<div class="col-lg-10">
-									<select class="form-control" id="passwordQuestion" name="stu_pw_question">
+									<select class="form-control" id="passwordQuestion"
+										name="stu_pw_question">
 										<c:forEach items="${question }" var="q">
 											<c:if test="${q.value==student.stu_pw_question }">
 												<option value="${q.value }" selected="selected">${q.value }</option>
@@ -149,39 +175,44 @@
 									</select>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="passwordQuestion" class="col-lg-2 control-label">密保答案</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" value="${student.stu_pw_answer }"
-										name="stu_pw_answer">
-									<input type="hidden" name="stu_head_img" value="111222"/>
+									<input type="text" class="form-control"
+										value="${student.stu_pw_answer }" name="stu_pw_answer">
 									<%-- <input name="stu_regist_time" type="hidden" value="${student.stu_regist_time }"/> --%>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="passwordQuestion" class="col-lg-2 control-label">注册时间</label>
-								<div class="col-lg-10" >
-									<input type="hidden" name="registTime" value="${student.stu_regist_time }"/>
+								<div class="col-lg-10">
+									<input type="hidden" name="registTime"
+										value="${student.stu_regist_time }" />
 									${student.stu_regist_time }
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
-									<button type="reset" class="btn btn-default">Cancel</button>
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="reset" class="btn btn-default"><a href="admin/student/list">返回</a></button>
+									<button type="submit" class="btn btn-primary">提交</button>
 								</div>
 							</div>
-							
-							
-							
+
+							<input type="hidden" id="hiddenHeadImg" name="stu_head_img">
+
 						</fieldset>
 					</form>
 				</div>
 			</div>
-			<div class="col-lg-3"></div>
+			<div class="col-lg-3">
+				<img id="headImg" src="${student.stu_head_img }" class="img-thumbnail">
+				<input type="file" id="photo" name="photo" value="浏览"/>
+				<input type="submit" value="上传" onclick="uploadPic()"/>
+				
+			</div>
 		</div>
 
 	</div>

@@ -3,11 +3,14 @@ package org.javatribe.pinker.controller.admin;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.javatribe.pinker.common.Pager;
+import org.javatribe.pinker.common.Pager.Order;
 import org.javatribe.pinker.common.Question;
 import org.javatribe.pinker.entity.Department;
 import org.javatribe.pinker.entity.Major;
@@ -68,10 +71,17 @@ public class StudentInfoController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(Model model ,Pager pager){
 		if(pager.getTotalCount()==0){
+			
 			pager=new Pager();
 			pager.setPageIndex(1);
 			pager.setPageSize(2);
 			pager.setHasPreviousPage(false);//第一页，故设置为无上一页
+			
+			Map<String,Order> orderMap=new HashMap<String,Order>();
+			orderMap.put("stu_id", Order.asc);//添加按stu_id排序
+			pager.setOrder(Order.asc);
+			pager.setOrderMap(orderMap);
+			
 		}
 		
 		pager =studentService.findByPager(pager);
@@ -94,6 +104,11 @@ public class StudentInfoController {
 			pager.setPageIndex(1);
 			pager.setPageSize(2);
 			pager.setHasPreviousPage(false);//第一页，故设置为无上一页
+			
+			Map<String,Order> orderMap=new HashMap<String,Order>();
+			orderMap.put("stu_id", Order.asc);//添加按stu_id排序
+			pager.setOrder(Order.asc);
+			pager.setOrderMap(orderMap);
 		}
 		
 		pager.setPageIndex(pageIndex);

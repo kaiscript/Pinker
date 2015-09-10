@@ -9,6 +9,10 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+/**
+ * @author kaiscript
+ * 2015年9月8日 下午3:54:40
+ */
 public class RequestUtil {
 	private static final Base64 base64=new Base64(true);
 	public static final String LAST_PAGE="com.javatribe.pinker";

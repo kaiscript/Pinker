@@ -1,14 +1,22 @@
 package org.javatribe.pinker.common;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
- * @author kaiscript
- * 2015年8月2日 下午5:13:26
+ * @author kaiscript 2015年8月2日 下午5:13:26
  */
 public class Pager {
+
+	/**
+	 * 排序方式（递增、递减）
+	 */
+	public enum Order {
+		asc, desc
+	}
 	
+	private Map<String,Order> orderMap;
 	/**
 	 * 每页记录
 	 */
@@ -26,6 +34,10 @@ public class Pager {
 	 */
 	private int totalPage;
 	/**
+	 * 排序
+	 */
+	private Order order;
+	/**
 	 * 数据结果
 	 */
 	private List<?> datas;
@@ -37,49 +49,66 @@ public class Pager {
 	 * 是否有上一页
 	 */
 	private boolean hasPreviousPage;
-	
-	public void init(){
-		
+
+	public void init() {
+
 		previousPage();
 		nextPage();
 		totalPage();
 	}
-	
+
 	/**
 	 * 初始化 总页数
 	 */
 	public void totalPage() {
-		if(totalCount % pageSize == 0 ){
+		if (totalCount % pageSize == 0) {
 			totalPage = totalCount / pageSize;
-		}
-		else{
+		} else {
 			totalPage = totalCount / pageSize + 1;
 		}
-		
+
 	}
+
 	/**
 	 * 初始化 是否有上一页 参数 hasPreviousPage
 	 */
-	public void previousPage(){
-		if(pageIndex == 1){
+	public void previousPage() {
+		if (pageIndex == 1) {
 			hasPreviousPage = false;
-		}
-		else{
+		} else {
 			hasPreviousPage = true;
 		}
 	}
+
 	/**
 	 * 初始化 是否有下一页 参数 hasNextPage
 	 */
-	public void nextPage(){
-		if(pageIndex == totalPage){
-			hasNextPage =false;
-		}
-		else{
-			hasNextPage =true;
+	public void nextPage() {
+		if (pageIndex == totalPage) {
+			hasNextPage = false;
+		} else {
+			hasNextPage = true;
 		}
 	}
+
 	
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	
+	public Map<String, Order> getOrderMap() {
+		return orderMap;
+	}
+
+	public void setOrderMap(Map<String, Order> orderMap) {
+		this.orderMap = orderMap;
+	}
+
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -135,6 +164,5 @@ public class Pager {
 	public void setHasPreviousPage(boolean hasPreviousPage) {
 		this.hasPreviousPage = hasPreviousPage;
 	}
-	
-	
+
 }

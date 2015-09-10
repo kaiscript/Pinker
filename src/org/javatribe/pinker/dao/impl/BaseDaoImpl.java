@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.javatribe.pinker.common.Pager;
@@ -127,6 +128,18 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		/**
 		 * 根据分页增加需求待完善
 		 */
+		
+		if(pager.getOrderMap()!=null){
+			for(String key:pager.getOrderMap().keySet()){
+				if(pager.getOrder()==org.javatribe.pinker.common.Pager.Order.asc){
+					criteria.addOrder(Order.asc(key));
+				}
+				else if(pager.getOrder()==org.javatribe.pinker.common.Pager.Order.desc){
+					criteria.addOrder(Order.desc(key));
+				}
+			}
+		}
+		
 		 criteria.setFirstResult((pager.getPageIndex()-1)*pager.getPageSize());
 		 //从第几条记录开始
 		 criteria.setMaxResults(pager.getPageSize()); //查询的条数
