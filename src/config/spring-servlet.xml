@@ -36,7 +36,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<!-- /**的意思是所有文件夹及里面的子文件夹 /*是所有文件夹，不含子文件夹 /是web项目的根目录 -->
-			<!-- <mvc:mapping path="/admin/**" /> -->
+			<mvc:mapping path="/admin/**" />
 			<mvc:mapping path="/test/**" />
 
 			<bean class="org.javatribe.pinker.interceptor.CommonInterceptor"></bean>

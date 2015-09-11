@@ -49,29 +49,36 @@
 				+ "?json", true);
 		req.send(null);
 	}
-	
+
 	/**
-	* 上传图片
-	*/
-	function uploadPic(){
-		
+	 * 上传图片
+	 */
+	function uploadPic() {
+
 		$.ajaxFileUpload({
-	        url:'pic/upload',
-	        secureuri:false,                       //是否启用安全提交,默认为false
-	        fileElementId:'photo',           //文件选择框的id属性
-	        dataType:'json',                       //服务器返回的格式,可以是json或xml等
-	        success:function(data, status){        //服务器响应成功时的处理函数
-	            if(status=="success"){
-	            	alert("上传成功");
-	            }
-	        	
-	        	$("#headImg").attr("src","pic/"+data.photoName);
-	        	$("#hiddenHeadImg").attr("value","pic/"+data.photoName);
-	        },
-	        
-	    });
+			url : 'pic/upload',
+			secureuri : false, //是否启用安全提交,默认为false
+			fileElementId : 'photo', //文件选择框的id属性
+			dataType : 'json', //服务器返回的格式,可以是json或xml等
+			success : function(data, status) { //服务器响应成功时的处理函数
+				if (status == "success") {
+					for(var i=0;i<=100;i++){
+						$("#progress").attr("style","width: "+i+"%;");
+					}
+					alert("上传成功");
+					
+				}
+
+				$("#headImg").attr("src", "pic/" + data.photoName);
+				$("#hiddenHeadImg").attr("value", "pic/" + data.photoName);
+			},
+			error:function(data,status){
+				if(status!="success"){
+					alert("上传失败");
+				}
+			}
+		});
 	}
-	
 </script>
 
 </head>
@@ -196,7 +203,9 @@
 
 							<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
-									<button type="reset" class="btn btn-default"><a href="admin/student/list">返回</a></button>
+									<button type="reset" class="btn btn-default">
+										<a href="admin/student/list">返回</a>
+									</button>
 									<button type="submit" class="btn btn-primary">提交</button>
 								</div>
 							</div>
@@ -208,11 +217,18 @@
 				</div>
 			</div>
 			<div class="col-lg-3">
-				<img id="headImg" src="${student.stu_head_img }" class="img-thumbnail">
-				<input type="file" id="photo" name="photo" value="浏览"/>
-				<input type="submit" value="上传" onclick="uploadPic()"/>
-				
+				<img id="headImg" src="${student.stu_head_img }"
+					class="img-thumbnail"> <input type="file" id="photo"
+					name="photo" value="浏览" /> <input type="submit" value="上传"
+					onclick="uploadPic()" />
+				<p>
+				<div class="progress">
+					<div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60"
+						aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					</div>
+				</div>
 			</div>
+
 		</div>
 
 	</div>

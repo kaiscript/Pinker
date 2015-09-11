@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.service.CourseService;
-import org.javatribe.pinker.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * 2015年8月25日 上午2:24:49
  */
 
-@Service
 public interface MajorService {
 	/**
 	 * 获取所有专业集合
