@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.dao.CourseDao;
+import org.javatribe.pinker.entity.Comment;
 import org.javatribe.pinker.entity.Course;
 import org.javatribe.pinker.entity.Student;
 import org.javatribe.pinker.service.CourseService;

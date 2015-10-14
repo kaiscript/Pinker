@@ -12,27 +12,35 @@
 
 <script type="text/javascript">
 	/**
-	*验证账号登录信息
-	*/
-	function validate(){
+	 *验证账号登录信息
+	 */
+	function validate() {
 		$.ajax({
-			type:"POST",
-			url:"validate/check?json",
-			data:{"account":$("#account").val(),
-				  "password":$("#password").val()
-				  },
-			success:function(data){
-				if(data.success=="true"){
+			type : "POST",
+			url : "validate/check?json",
+			data : {
+				"account" : $("#account").val(),
+				"password" : $("#password").val(),
+				"autoLogin": $("#autoLogin").val()
+			},
+			success : function(data) {
+				if (data.success == "true") {
 					$("#loginForm").submit();
 				}
-				if(data.success=="false"){
-					$("#warn").attr("class","alert alert-warning show");
+				if (data.success == "false") {
+					$("#warn").attr("class", "alert alert-warning show");
 					$("#warn").fadeOut(3000);
 				}
 			},
-			dataType:"json"
-			
+			dataType : "json"
+
 		});
+	}
+	var a=0;
+	function getAuto(){
+		if(a==0) a=1;
+		else if(a==1) a=0;
+		$("#autoLogin").attr("value",a);
 	}
 </script>
 
@@ -44,21 +52,28 @@
 	<div class="col-md-4">
 
 		<br> <br> <br>
-		<form id="loginForm" class="form-signin" action="validate/login">
+
+		<form action="javascript:validate()">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<input type="text" id="account" class="form-control" name="account"
-				placeholder="Account"> 
-				<br> 
-			<input type="password" id="password" class="form-control" name="password" placeholder="Password">
-			<br>
-			
-		</form>
-			<button id="button" class="btn btn-lg btn-primary btn-block" type="submit" onclick="validate()">
-			Sign in</button>
-			<br>
-			<div id="warn" class="alert alert-warning hidden">
-   				<strong>请输入正确的账号或密码！</strong>
+				placeholder="Account"> <br> <input type="password"
+				id="password" class="form-control" name="password"
+				placeholder="Password"> <br>
+			<div class="checkbox">
+				<label> <input type="checkbox" value="1" onclick="getAuto()">记住我
+				</label>
 			</div>
+			<button id="button" class="btn btn-lg btn-primary btn-block"
+				type="submit" onclick="validate()">Sign in</button>
+		</form>
+		<form id="loginForm" class="form-signin" action="validate/login">
+			<input type="hidden" id="autoLogin" name="autoLogin" value="0">
+		</form>
+
+		<br>
+		<div id="warn" class="alert alert-warning hidden">
+			<strong>请输入正确的账号或密码！</strong>
+		</div>
 	</div>
 	<div class="col-md-4"></div>
 </body>

@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table(name = "report")
 public class Report {
 
 	private int rpt_id;

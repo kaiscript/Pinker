@@ -56,14 +56,23 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> getAllList() {
-		// TODO Auto-generated method stub
 		return commentDao.getAllList();
+	}
+	
+	@Override
+	public List<Comment> getAllListDesc() {
+		return commentDao.getAllListDesc();
 	}
 
 	@Override
 	public Pager findByPager(Pager pager) {
-		// TODO Auto-generated method stub
 		return commentDao.findByPager(pager);
 	}
+
+	@Override
+	public List<Comment> getByFirstresultDesc(int firstResult) {
+		return commentDao.getByFirstresultDesc(firstResult);
+	}
+
 
 }

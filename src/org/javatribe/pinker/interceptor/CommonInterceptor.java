@@ -1,13 +1,14 @@
 package org.javatribe.pinker.interceptor;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.javatribe.pinker.entity.Admin;
 import org.javatribe.pinker.util.RequestUtil;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+//记住我 功能
 public class CommonInterceptor extends HandlerInterceptorAdapter {
 	
 	
@@ -26,21 +27,32 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("---preHandle---");
+//		System.out.println("---preHandle---");
 		if("GET".equalsIgnoreCase(request.getMethod())){
 			RequestUtil.saveRequest();
 		}
 		String requestUri=request.getRequestURI();
 		String contextPath=request.getContextPath();
 		String requestUrl=requestUri.substring(contextPath.length());
-		
-		String username=(String)request.getSession().getAttribute("user");
-		if(username==null){
+		Admin admin=(Admin) request.getSession().getAttribute("user");
+		String autoLogin = (String) request.getSession().getAttribute("autoLogin");
+		System.out.println("----preHandle-----"+admin);
+		System.out.println(autoLogin);
+		if(admin==null){
+			request.getSession().setAttribute("autoLogin", "00"); //第一位代表是否正确验证了信息
 			request.getRequestDispatcher("/WEB-INF/sys/login.jsp").forward(request, response);
+			System.out.println("a");
 			return false;
 		}
-		else
+		else if(admin!= null && autoLogin.equals("10")){
+			System.out.println("b");
 			return true;
+		}
+		else if(admin!= null && autoLogin.equals("11")){
+			System.out.println("c");
+			return true;
+		}
+		return true;
 	}
 	
 

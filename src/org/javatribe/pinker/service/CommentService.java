@@ -14,7 +14,7 @@ import org.javatribe.pinker.entity.Comment;
 
 public interface CommentService {
 
-public boolean save(Comment comment);
+	public boolean save(Comment comment);
 	
 	public boolean delete(Comment comment);
 	
@@ -25,6 +25,10 @@ public boolean save(Comment comment);
 	public List<Comment> getByIdSet(Integer[] ids);
 	
 	public List<Comment> getAllList();
+	
+	public List<Comment> getAllListDesc();
+	
+	public List<Comment> getByFirstresultDesc(int firstResult);
 	
 	public Pager findByPager(Pager pager);
 	

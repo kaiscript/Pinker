@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table
+@Table(name = "comment")
 public class Comment {
 
 	private int cmt_id;
@@ -100,7 +100,8 @@ public class Comment {
 	public void setCmt_star(int cmt_star) {
 		this.cmt_star = cmt_star;
 	}
-
+	
+	@org.hibernate.annotations.Type(type="yes_no")
 	@Column(nullable=false)
 	public boolean isCmt_is_anon() {
 		return cmt_is_anon;
