@@ -22,4 +22,12 @@ public interface MajorDao extends BaseDao<Major> {
 	 * @return 
 	 */
 	public Major getMajorById(int majorId);
+	
+	/**
+	 *  根据专业名获取专业实体
+	 * @param majorName
+	 * @return 
+	 */
+	public Major getMajorByName(String majorName);
+	
 }

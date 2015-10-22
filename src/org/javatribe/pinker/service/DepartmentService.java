@@ -21,4 +21,11 @@ public interface DepartmentService{
 	 * @return
 	 */
 	public Department getDepartmentById(int departmentId);
+	
+	/**
+	 * 根据名获取系实体
+	 * @param departmentName
+	 * @return
+	 */
+	public Department getDepartmentByName(String departmentName);
 }

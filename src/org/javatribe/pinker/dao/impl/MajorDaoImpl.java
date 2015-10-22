@@ -4,9 +4,12 @@ package org.javatribe.pinker.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Restrictions;
 import org.javatribe.pinker.dao.MajorDao;
 import org.javatribe.pinker.entity.Major;
+import org.junit.Test;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -28,9 +31,16 @@ public class MajorDaoImpl extends BaseDaoImpl<Major> implements MajorDao {
 	}
 	
 	@Override
-	public Major getMajorById(int majorId) {
+	public  Major getMajorById(int majorId) {
 		Criteria criteria=getSession().createCriteria(Major.class);
 		criteria.add(Restrictions.eq("maj_id", majorId));
+		return (Major)criteria.uniqueResult();
+	}
+
+	@Override
+	public Major getMajorByName(String majorName) {
+		Criteria criteria = getSession().createCriteria(Major.class);
+		criteria.add(Restrictions.eq("maj_name", majorName));
 		return (Major)criteria.uniqueResult();
 	}
 	

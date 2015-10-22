@@ -61,7 +61,6 @@ public class Student {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getStu_id() {
 		return stu_id;
 	}
@@ -102,7 +101,7 @@ public class Student {
 		this.stu_per_sig = stu_per_sig;
 	}
 	
-	@Column(length=255,nullable=false)
+	@Column(length=255,nullable=true)
 	public String getStu_head_img() {
 		return stu_head_img;
 	}
@@ -127,7 +126,7 @@ public class Student {
 		this.stu_attn_crs_ids = stu_attn_crs_ids;
 	}
 
-	@Column(length=64,nullable=false)
+	@Column(length=64,nullable=true)
 	public String getStu_pw_question() {
 		return stu_pw_question;
 	}
@@ -135,7 +134,7 @@ public class Student {
 		this.stu_pw_question = stu_pw_question;
 	}
 	
-	@Column(length=64,nullable=false)
+	@Column(length=64,nullable=true)
 	public String getStu_pw_answer() {
 		return stu_pw_answer;
 	}

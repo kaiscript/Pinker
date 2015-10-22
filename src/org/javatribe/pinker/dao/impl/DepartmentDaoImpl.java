@@ -21,4 +21,11 @@ public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements Depart
 		return (Department) criteria.uniqueResult();
 	}
 
+	@Override
+	public Department getDepartmentByName(String departmentName) {
+		Criteria criteria = getSession().createCriteria(Department.class);
+		criteria.add(Restrictions.eq("dept_name", departmentName));
+		return (Department)criteria.uniqueResult();
+	}
+
 }

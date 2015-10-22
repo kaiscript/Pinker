@@ -13,4 +13,11 @@ public interface DepartmentDao extends BaseDao<Department> {
 	 * @return 
 	 */
 	public Department getDepartmentById(int departmentId);
+	
+	/**
+	 * 根据系名获取系实体
+	 * @param departmentId
+	 * @return 
+	 */
+	public Department getDepartmentByName(String departmentName);
 }

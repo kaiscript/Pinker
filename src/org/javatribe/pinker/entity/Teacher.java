@@ -54,7 +54,6 @@ public class Teacher {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(length=15)
 	public int getTch_id() {
 		return tch_id;
@@ -97,7 +96,7 @@ public class Teacher {
 		this.tch_per_sig = tch_per_sig;
 	}
 	
-	@Column(length=255,nullable=false)
+	@Column(length=255,nullable=true)
 	public String getTch_head_img() {
 		return tch_head_img;
 	}

@@ -8,6 +8,7 @@ import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.dao.StudentDao;
 import org.javatribe.pinker.entity.Student;
 import org.javatribe.pinker.service.StudentService;
+import org.junit.Test;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("studentServiceImpl")
 @Transactional  
 public class StudentServiceImpl implements StudentService {
+
 	
 	@Resource(name="studentDaoImpl")
 	StudentDao studentDao;
@@ -58,8 +60,4 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.findByPager(pager);
 	}
 	
-	
-	
-	
-
 }

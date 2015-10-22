@@ -37,8 +37,9 @@ public class MajorServiceImpl implements MajorService {
 		return majorDao.getMajorById(majorId);
 	}
 
-	
-	
+	@Override
+	public Major getMajorByName(String majorName) {
+		return majorDao.getMajorByName(majorName);
+	}
 
-	
 }
