@@ -23,7 +23,6 @@ public class MajorDaoImpl extends BaseDaoImpl<Major> implements MajorDao {
 	public List<Major> getMajorsByDepartmentId(int departmentId) {
 		Criteria criteria =getSession().createCriteria(Major.class);
 		criteria.add(Restrictions.eq("department.dept_id", departmentId));
-		
 		return (List<Major>) criteria.list();
 	}
 	
@@ -32,6 +31,13 @@ public class MajorDaoImpl extends BaseDaoImpl<Major> implements MajorDao {
 		Criteria criteria=getSession().createCriteria(Major.class);
 		criteria.add(Restrictions.eq("maj_id", majorId));
 		return (Major)criteria.uniqueResult();
+	}
+
+	@Override
+	public Major getMajorByName(String majorName) {
+		Criteria criteria = getSession().createCriteria(Major.class);
+		criteria.add(Restrictions.eq("maj_name",majorName));
+		return (Major) criteria.uniqueResult();
 	}
 	
 }

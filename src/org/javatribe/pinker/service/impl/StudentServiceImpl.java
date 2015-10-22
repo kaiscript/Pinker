@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2015年8月15日 下午6:46:27
  */
 
-@Service("studentServiceImpl")
+@Service(value = "studentServiceImpl")
 @Transactional  
 public class StudentServiceImpl implements StudentService {
 	

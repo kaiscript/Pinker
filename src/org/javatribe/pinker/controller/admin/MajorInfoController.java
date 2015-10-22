@@ -34,9 +34,11 @@ public class MajorInfoController {
 	 * @param departmentId
 	 * @return 对应系的专业集合
 	 */
-	@RequestMapping(value="/getMajorSelect/{departmentId}",method =RequestMethod.POST,params="json")
+	@RequestMapping(value="/getMajorSelect/{departmentId}",method =RequestMethod.GET,params="json")
 	@ResponseBody
 	public List<Major> getMajorJson(@PathVariable int departmentId){
+//		Major major=majorService.getMajorByName("信息管理与信息系统");
+//		System.out.println(major.getMaj_id()+" "+major.getDepartment().getDept_id());
 		return (List<Major>)majorService.getMajorsByDepartmentId(departmentId);
 	}
 	

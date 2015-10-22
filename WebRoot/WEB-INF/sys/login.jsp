@@ -60,14 +60,15 @@
 				id="password" class="form-control" name="password"
 				placeholder="Password"> <br>
 			<div class="checkbox">
-				<label> <input type="checkbox" value="1" onclick="getAuto()">记住我
+				<label> <input type="checkbox" value="1" onclick="getAuto()">记住我(忽略)
 				</label>
 			</div>
 			<button id="button" class="btn btn-lg btn-primary btn-block"
 				type="submit" onclick="validate()">Sign in</button>
+			<input type="hidden" id="autoLogin" name="autoLogin" value="0">	
 		</form>
 		<form id="loginForm" class="form-signin" action="validate/login">
-			<input type="hidden" id="autoLogin" name="autoLogin" value="0">
+			
 		</form>
 
 		<br>

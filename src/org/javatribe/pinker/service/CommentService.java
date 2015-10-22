@@ -32,4 +32,7 @@ public interface CommentService {
 	
 	public Pager findByPager(Pager pager);
 	
+	public List<Comment> getCommentsByCourseId(int courseId);
+	
+	public List<Comment> getCommentByCourseIdAndFirstresult(int courseId,int firstResult);
 }

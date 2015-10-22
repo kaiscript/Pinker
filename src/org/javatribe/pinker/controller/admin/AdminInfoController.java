@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.javatribe.pinker.common.LoginConstant;
 import org.javatribe.pinker.entity.Admin;
 import org.javatribe.pinker.service.AdminService;
 import org.springframework.stereotype.Controller;
@@ -34,30 +32,28 @@ public class AdminInfoController {
 	@RequestMapping(value = "/check", method = RequestMethod.POST, params = "json")
 	@ResponseBody
 	public Map<String, String> validate(@RequestParam String account,
-			@RequestParam String password, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String password, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		Admin admin = adminService.getAdminByUsername(account);
-		String getAuto = request.getParameter("autoLogin");// 自动登录 checkbox 值
+		String getAuto = request.getParameter("autoLogin");// 记住我 checkbox 值，0没记住，1记住我
 		request.getSession().setAttribute("user", admin);
-		
-		System.out.println("controller:autoLogin"+request.getSession().getAttribute("autoLogin"));
+//		Cookie cookie = new Cookie("autoLogin",request.getSession().getId()+"AL"+getAuto);
+//		cookie.setPath("/");
+//		cookie.setMaxAge(24*3600);
+//		response.addCookie(cookie);
 		
 		if (admin != null && password.equals(admin.getAdmin_password())) {
-			Cookie cookie = setCookieSetting(request,admin,getAuto);
-			request.getSession().setAttribute("autoLogin", "1"+getAuto);
-			LoginConstant.ifFirstLogin = false;
+			request.getSession().setAttribute("autoLogin", getAuto);
+			
 			map.put("success", "true"); //json :key为success,value为true
-			response.addCookie(cookie); //返回cookie到客户端
 			return map;
 		}
 		map.put("success", "false");
 		return map;
 	}
-
 	
 	@RequestMapping("/login")
 	public String validateAdminInfo(HttpServletRequest request) {
-		
 		return "redirect:/admin/student/list";
 	}
 
@@ -65,30 +61,6 @@ public class AdminInfoController {
 	public String exit(HttpServletRequest request) {
 		request.getSession().setAttribute("user", null);
 		return "login";
-	}
-	
-	/**
-	 * 设置是否自动登录的cookie
-	 * @param request
-	 * @param admin
-	 * @param autoLogin
-	 */
-	public Cookie setCookieSetting(HttpServletRequest request,Admin admin,String autoLogin){
-		request.getSession().setAttribute("user", admin); // 管理员验证成功则设置session
-		Cookie cookie;
-		if(autoLogin.equals("1")){
-			cookie = new Cookie("autoLogin",request.getSession().getId()+"AL1");
-			cookie.setMaxAge(24*3600); //保存24小时
-//			System.out.println("1:cookie:"+cookie.getValue());
-//			System.out.println("name:"+cookie.getName());
-		}
-		else{
-			cookie = new Cookie("autoLogin",request.getSession().getId()+"AL0");
-//			System.out.println("0:cookie:"+cookie.getValue());
-//			System.out.println("name:"+cookie.getName());
-		}
-		
-		return cookie;
 	}
 	
 }

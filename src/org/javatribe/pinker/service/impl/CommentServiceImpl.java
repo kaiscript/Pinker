@@ -44,7 +44,6 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment getById(Integer id) {
-		// TODO Auto-generated method stub
 		return commentDao.get(id);
 	}
 
@@ -74,5 +73,15 @@ public class CommentServiceImpl implements CommentService {
 		return commentDao.getByFirstresultDesc(firstResult);
 	}
 
+	@Override
+	public List<Comment> getCommentsByCourseId(int courseId) {
+		return commentDao.getCommentsByCourseId(courseId);
+	}
 
+	@Override
+	public List<Comment> getCommentByCourseIdAndFirstresult(int courseId,
+			int firstResult) {
+		return commentDao.getCommentByCourseIdAndFirstresult(courseId, firstResult);
+	}
+	
 }

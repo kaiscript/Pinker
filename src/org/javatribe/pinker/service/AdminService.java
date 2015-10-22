@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.entity.Admin;
-
+/**
+ * @author kaiscript
+ * 2015年10月14日 下午9:46:10
+ */
 public interface AdminService {
 	/**
 	 * 保存管理员实体

@@ -54,6 +54,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public boolean save(T entity) {
 		try {
 			getSession().save(entity);
+			getSession().flush();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

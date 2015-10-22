@@ -22,4 +22,7 @@ public interface MajorDao extends BaseDao<Major> {
 	 * @return 
 	 */
 	public Major getMajorById(int majorId);
+	
+	
+	public Major getMajorByName(String majorName);
 }

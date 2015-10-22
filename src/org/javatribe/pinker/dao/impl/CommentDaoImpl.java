@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
  * @author kaiscript
  * 2015年10月11日 下午11:00:56
  * 增加 public List<Comment> getByFirstresult(int firstResult)
+ * public List<Comment> getCommentsByCourseId(int courseId)
  */
 @Repository(value="commentDaoImpl")
 public class CommentDaoImpl extends BaseDaoImpl<org.javatribe.pinker.entity.Comment> implements CommentDao {
@@ -33,11 +34,31 @@ public class CommentDaoImpl extends BaseDaoImpl<org.javatribe.pinker.entity.Comm
 		return (List<Comment>)criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comment> getAllListDesc() {
 		Criteria criteria = getSession().createCriteria(Comment.class);
 		criteria.addOrder(Order.desc("cmt_id"));
+		return (List<Comment>)criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> getCommentsByCourseId(int courseId) {
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.addOrder(Order.desc("cmt_id"));
+		criteria.add(Restrictions.eq("course.crs_id",courseId));
 		return criteria.list();
 	}
-	
+
+	@Override
+	public List<Comment> getCommentByCourseIdAndFirstresult(int courseId,int firstResult) {
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.addOrder(Order.desc("cmt_id"));
+		criteria.add(Restrictions.eq("course.crs_id",courseId));
+		criteria.setFirstResult(firstResult);
+		criteria.setMaxResults(10);
+		return (List<Comment>)criteria.list();
+	}
+
 }

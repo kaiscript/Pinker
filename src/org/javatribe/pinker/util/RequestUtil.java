@@ -10,6 +10,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
+ * 待使用
  * @author kaiscript
  * 2015年9月8日 下午3:54:40
  */

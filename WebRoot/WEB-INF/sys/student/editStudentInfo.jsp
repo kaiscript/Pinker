@@ -12,10 +12,22 @@
 <base href="<%=basePath%>">
 
 <%@ include file="../head.html"%>
-<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+
+<!-- 上传图片到本地服务器所需的js -->
+<!-- <script type="text/javascript" src="js/ajaxfileupload.js"></script> --> 
+<script type="text/javascript" src="js/jquery.form.min.js"></script>
 <title>学生信息编辑</title>
 
 <script type="text/javascript">
+	
+	$(document).ready(function() {
+		initUploadForm();
+	});
+	
+	$('input[name=FileContent]').change(function () {
+		initUploadForm();
+	});
+
 	function changeMajorSelect(majorId) {
 		var req;
 		var id = majorId;
@@ -51,9 +63,9 @@
 	}
 
 	/**
-	 * 上传图片
+	 * 上传图片 到本地服务器 .图片上传按钮已注释 
 	 */
-	function uploadPic() {
+	/* function uploadPic() {
 
 		$.ajaxFileUpload({
 			url : 'pic/upload',
@@ -78,7 +90,64 @@
 				}
 			}
 		});
+	} */
+	
+	
+	function initUploadForm () {
+		$.getJSON('pic/getsign', function(data) {
+			var sign = data.sign,
+			url = data.url + '?sign=' + encodeURIComponent(sign);
+			var options = { 
+	            type: 'post',
+	            url: url,
+	            dataType: 'json',
+			    success:function(ret) { 
+			    	for(var i=1;i<=30;i++){
+						$("#progress").attr("style","width: "+i+"%;");
+					}
+			    	uploadImgUrl(ret.data.url, ret.data.download_url);
+			    	$("#headImg").attr("src", ret.data.download_url);//更新当前头像url
+			    	$("#hiddenHeadImg").attr("value",ret.data.download_url);
+			    	$('#downloadUrl').html(ret.data.download_url);
+			    	
+			    	//$('#fileid').text(ret.data.fileid);
+			    	//$('#url').text(ret.data.url);
+			    	//alert(ret.data.download_url);
+			    	//alert(ret.data.fileid);
+			    	//alert(ret.data.url);
+			    },
+			    error:function (ret) {
+			    	alert(ret.responseText);
+			    }
+			}; 
+			// pass options to ajaxForm 
+			$('#uploadForm').ajaxForm(options);
+		});
 	}
+	
+	function uploadImgUrl(usefulurl,downloadurl){
+		$.ajax({
+			type:'POST',
+			url:'pic/uploadHeadimg',
+			data:{
+				'userid':$("#stuId").val(),
+				'url':usefulurl,
+				'downloadurl':downloadurl
+			},
+			dateType : 'json',
+			success:function(data){
+				if(data.code==0){
+					for(var i=30;i<=100;i++){
+						$("#progress").attr("style","width: "+i+"%;");
+					}
+		    		alert("上传头像成功");
+				}
+				else if(data.code==1)
+					alert("上传头像失败");
+			}
+		});
+	}
+	
 </script>
 
 </head>
@@ -99,10 +168,11 @@
 						<fieldset>
 							<legend>修改学生 ${student.stu_name } 的资料</legend>
 							<div class="form-group">
-								<label for="inputId" class="col-lg-2 control-label">学号</label>
+								<label for="stuId" class="col-lg-2 control-label">学号</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" id="inputId"
+									<input type="text" class="form-control" id="stuId"
 										placeholder="学号" name="stu_id" value="${student.stu_id }">
+									<input type="hidden" name="orginal_stu_id" value="${student.stu_id }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -188,15 +258,13 @@
 								<div class="col-lg-10">
 									<input type="text" class="form-control"
 										value="${student.stu_pw_answer }" name="stu_pw_answer">
-									<%-- <input name="stu_regist_time" type="hidden" value="${student.stu_regist_time }"/> --%>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="passwordQuestion" class="col-lg-2 control-label">注册时间</label>
 								<div class="col-lg-10">
-									<input type="hidden" name="registTime"
-										value="${student.stu_regist_time }" />
+									<input type="hidden" name="registTime" value="${student.stu_regist_time }" />
 									${student.stu_regist_time }
 								</div>
 							</div>
@@ -210,23 +278,28 @@
 								</div>
 							</div>
 
-							<input type="hidden" id="hiddenHeadImg" name="stu_head_img">
+							<input type="hidden" id="hiddenHeadImg" name="stu_head_img" value="${student.stu_head_img }">
 
 						</fieldset>
 					</form>
 				</div>
 			</div>
 			<div class="col-lg-3">
-				<img id="headImg" src="${student.stu_head_img }"
-					class="img-thumbnail"> <input type="file" id="photo"
-					name="photo" value="浏览" /> <input type="submit" value="上传"
-					onclick="uploadPic()" />
+				<img id="headImg" src="${student.stu_head_img }" class="img-thumbnail"> 
+				<form id="uploadForm">
+					<input type="file" id="imgFile" name="FileContent" value="浏览"></input> 
+					<input type="submit" value="上传"/>
+					<!-- <input type="submit" value="上传" onclick="uploadPic()" /> -->
+				</form>
 				<p>
 				<div class="progress">
 					<div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60"
 						aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 					</div>
 				</div>
+				<span id="downloadUrl"></span>
+				<div id="fileid"></div>
+				<div id="url"></div>  
 			</div>
 
 		</div>

@@ -3,7 +3,6 @@ package org.javatribe.pinker.service;
 import java.util.List;
 
 import org.javatribe.pinker.entity.Major;
-import org.springframework.stereotype.Service;
 
 /**
  * @author kaiscript
@@ -30,4 +29,6 @@ public interface MajorService {
 	 * @return 
 	 */
 	public Major getMajorById(int majorId);
+	
+	public Major getMajorByName(String majorName);
 }

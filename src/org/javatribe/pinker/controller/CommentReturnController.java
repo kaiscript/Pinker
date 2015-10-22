@@ -38,7 +38,32 @@ public class CommentReturnController {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
-
+	
+	/**
+	 * 根据评论id获取相应 评论数据
+	 * @param commentId
+	 * @return
+	 */
+	@RequestMapping(value="/id{commentId}.json",method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject getCommentById(@PathVariable int commentId){
+		Comment comment = commentService.getById(commentId);
+		JSONObject json = new JSONObject();
+		String username = getName(comment.getCmt_user_id());
+		json.put("commentId", comment.getCmt_id());
+		json.put("userId",comment.getCmt_user_id());
+		json.put("userHeadImg", getHeadImg(comment.getCmt_user_id()));
+		json.put("userName", username);
+		json.put("teaName", comment.getCourse().getCrs_teacher_name());
+		json.put("courseId", comment.getCourse().getCrs_id());
+		json.put("courseName", comment.getCourse().getCrs_name());
+		json.put("data",FormatTrans.getHowLongTime(comment.getCmt_time()));
+		json.put("content", comment.getCmt_content());
+		json.put("good", comment.getCmt_like_number());
+		json.put("bad", comment.getCmt_against_number());
+		return json;
+	}
+	
 	/**
 	 * 返回从指定第几条数据开始 返回数据，数据默认10条
 	 * @param firstResult 从第几页开始
@@ -58,9 +83,51 @@ public class CommentReturnController {
 	 */
 	@RequestMapping(value = "/list/all.json",method = RequestMethod.GET)
 	@ResponseBody
-	public JSONArray get(){
+	public JSONArray getAllComments(){
 		List<Comment> getCommentsList = commentService.getAllListDesc();
 		return getCommentsJSONArray(getCommentsList);
+	}
+	
+	@RequestMapping(value="/allcommentsincourse/courseId{courseId}/{firstResult}.json",method=RequestMethod.GET)
+	@ResponseBody
+	public JSONArray getCourseDetailCommentsByFirstresult(@PathVariable int courseId,
+			@PathVariable int firstResult){
+		List<Comment> comments = commentService.getCommentByCourseIdAndFirstresult(courseId, firstResult);
+		return getCommentsIncourseJSONArray(comments);
+	}
+	
+	/**
+	 * 返回某个课程下的所有评论
+	 * @param courseId
+	 * @return json数据
+	 */
+	@RequestMapping(value="/allcommentsincourse/courseId{courseId}.json",method = RequestMethod.GET)
+	@ResponseBody
+	public JSONArray getCourseDetailComments(@PathVariable int courseId){
+		List<Comment> comments = commentService.getCommentsByCourseId(courseId);
+		return getCommentsIncourseJSONArray(comments);
+	}
+	
+	/**
+	 * 某个课程下的所有评论 的JSONArray数组
+	 * @param comments
+	 * @return
+	 */
+	public JSONArray getCommentsIncourseJSONArray(List<Comment> comments){
+		JSONArray commentsJson = new JSONArray();
+		for(Comment c:comments){
+			JSONObject json=new JSONObject();
+			json.put("commentId", c.getCmt_id());
+			json.put("courseId", c.getCourse().getCrs_id());
+			json.put("userId",c.getCmt_user_id());
+			json.put("commentContent",c.getCmt_content());
+			json.put("userHeadImg", getHeadImg(c.getCmt_user_id()));
+			json.put("data",FormatTrans.getHowLongTime(c.getCmt_time()));
+			json.put("good", c.getCmt_like_number());
+			json.put("bad", c.getCmt_against_number());
+			commentsJson.add(json);
+		}
+		return commentsJson;
 	}
 	
 	/**
@@ -73,11 +140,13 @@ public class CommentReturnController {
 		for(Comment c:comments){
 			JSONObject json = new JSONObject();
 			String username = getName(c.getCmt_user_id());
-			json.put("id", c.getCmt_id());
+			json.put("commentId", c.getCmt_id());
+			json.put("userId",c.getCmt_user_id());
 			json.put("userHeadImg", getHeadImg(c.getCmt_user_id()));
 			json.put("userName", username);
 			json.put("teaName", c.getCourse().getCrs_teacher_name());
-			json.put("course", c.getCourse().getCrs_name());
+			json.put("courseId", c.getCourse().getCrs_id());
+			json.put("courseName", c.getCourse().getCrs_name());
 			json.put("data",FormatTrans.getHowLongTime(c.getCmt_time()));
 			json.put("content", c.getCmt_content());
 			json.put("good", c.getCmt_like_number());

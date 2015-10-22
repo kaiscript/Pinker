@@ -1,0 +1,6 @@
+/**
+* kaiscript
+*/
+database.properties文件中
+url后缀不可改,不能动不能动！
+qclound必须在加utf-8的后缀下才不会出现乱码
