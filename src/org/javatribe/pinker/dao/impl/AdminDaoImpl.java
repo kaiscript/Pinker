@@ -5,7 +5,10 @@ import org.hibernate.criterion.Restrictions;
 import org.javatribe.pinker.dao.AdminDao;
 import org.javatribe.pinker.entity.Admin;
 import org.springframework.stereotype.Repository;
-
+/**
+ * @author kaiscript
+ * 2015年10月14日 下午9:45:53
+ */
 @Repository(value = "adminDaoImpl")
 public class AdminDaoImpl extends BaseDaoImpl<Admin> implements AdminDao {
 

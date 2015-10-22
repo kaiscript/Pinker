@@ -26,7 +26,6 @@ public class MajorDaoImpl extends BaseDaoImpl<Major> implements MajorDao {
 	public List<Major> getMajorsByDepartmentId(int departmentId) {
 		Criteria criteria =getSession().createCriteria(Major.class);
 		criteria.add(Restrictions.eq("department.dept_id", departmentId));
-		
 		return (List<Major>) criteria.list();
 	}
 	

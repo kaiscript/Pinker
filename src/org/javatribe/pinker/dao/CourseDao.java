@@ -9,5 +9,5 @@ import org.javatribe.pinker.entity.Course;
  */
 
 public interface CourseDao extends BaseDao<Course> {
-
+	
 }

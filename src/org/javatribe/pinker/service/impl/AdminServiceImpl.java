@@ -10,7 +10,10 @@ import org.javatribe.pinker.entity.Admin;
 import org.javatribe.pinker.service.AdminService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+/**
+ * @author kaiscript
+ * 2015年10月14日 下午9:46:16
+ */
 @Service("adminServiceImpl")
 @Transactional
 public class AdminServiceImpl implements AdminService {
