@@ -1,9 +1,5 @@
 package org.javatribe.pinker.dao.impl;
 
-import java.util.List;
-
-import org.hibernate.SessionFactory;
-import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.dao.CourseDao;
 import org.javatribe.pinker.entity.Course;
 import org.springframework.stereotype.Repository;

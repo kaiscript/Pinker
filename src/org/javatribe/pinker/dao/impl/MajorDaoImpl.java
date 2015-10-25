@@ -4,12 +4,9 @@ package org.javatribe.pinker.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Restrictions;
 import org.javatribe.pinker.dao.MajorDao;
 import org.javatribe.pinker.entity.Major;
-import org.junit.Test;
 import org.springframework.stereotype.Repository;
 
 /**
