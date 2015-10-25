@@ -124,7 +124,7 @@ public class Student {
 		this.stu_attn_crs_ids = stu_attn_crs_ids;
 	}
 
-	@Column(length=64,nullable=true)
+	@Column(length=64,nullable=false)
 	public String getStu_pw_question() {
 		return stu_pw_question;
 	}
@@ -132,7 +132,7 @@ public class Student {
 		this.stu_pw_question = stu_pw_question;
 	}
 	
-	@Column(length=64,nullable=true)
+	@Column(length=64,nullable=false)
 	public String getStu_pw_answer() {
 		return stu_pw_answer;
 	}
