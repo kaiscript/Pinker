@@ -29,10 +29,32 @@ public class Teacher {
 	private String tch_per_sig;
 	private String tch_head_img;
 	private Date tch_regist_time;
+	private String tch_pw_question;
+	private String tch_pw_answer;
 	
 	private Department department;
 	
-	
+	@Column(nullable=false)
+	public String getTch_pw_question() {
+		return tch_pw_question;
+	}
+
+
+	public void setTch_pw_question(String tch_pw_question) {
+		this.tch_pw_question = tch_pw_question;
+	}
+
+	@Column(nullable=false)
+	public String getTch_pw_answer() {
+		return tch_pw_answer;
+	}
+
+
+	public void setTch_pw_answer(String tch_pw_answer) {
+		this.tch_pw_answer = tch_pw_answer;
+	}
+
+
 	public Teacher() {
 	}
 
