@@ -39,7 +39,7 @@
 	function dodel(id){
 		$('.modal').modal('show').on('shown',function(){
 			$(".btn-primary").attr('href','Del.asp?id='+id);
-		})
+		});
 	}
 </script>
 </script>
@@ -53,8 +53,8 @@
 					<input type="text" class="form-control"
 						placeholder="搜索课程，用课程名 / 教师名搜索"> <span class="input-group-btn"> <input type="submit"
 						class="btn btn-default" value="Go !" /> 
-				</form>
 				</span>
+				</form>
 			</div>
 			<!-- /input-group -->
 		</div>
@@ -72,31 +72,35 @@
 				<th class="col-md-1">标签</th>
 				<th class="col-md-3">内容评价</th>
 				<th class="col-md-1">是否匿名</th>
-				<th class="col-md-1">赞同数/反对数</th>
+			<!-- 	<th class="col-md-1">赞同数/反对数</th> -->
 				<th class="col-md-1">举报数</th>
-				<th class="col-md-1">评论操作</th>
+				<th class="col-md-2">评论操作</th>
 			</tr>
 			<c:set var="datas" value="${commentPager.datas }" />
 			<c:forEach items="${datas }" var="c" varStatus="status">
 				<tr>
-					<td>${c.cmt_id }</td>
+					<td>${status.index+1} </td>
 					<td>${c.cmt_user_id }</td>
-					<td>${c.cmt_time }</td>
+					<td><h6>${c.cmt_time }</h6></td>
 					<td>${c.cmt_star }</td>
 					<td>${c.cmt_crs_label }</td>
 					<td>${c.cmt_content }</td>
-					<c:if test="${c.cmt_is_anon==true }">
+					<c:if  test="${c.cmt_is_anon==true }">
 						<td><span class="glyphicon glyphicon glyphicon glyphicon-ok"
 							aria-hidden="true"></span></td>
 					</c:if>
-					<td>${c.cmt_like_number }/${c.cmt_against_number }</td>
+					<c:if test="${c.cmt_is_anon==false }">
+						<td></td>
+					</c:if>
+				<%-- 	<td>${c.cmt_like_number }/${c.cmt_against_number }</td> --%>
 					<td>${c.cmt_report_number }</td>
 					<td><a href="admin/comment/delete?id=${ c.cmt_id}"><button
-								class="btn btn-success">删除</button></a></td>
+								class="btn btn-danger">详情</button></a> <a href="admin/comment/delete?id=${ c.cmt_id}"><button
+								class="btn btn-success">删除</button> </a></td>
 					<!-- data-target=".bs-example-modal-sm" 	data-target="#deleteConfirmModal" data-toggle="modal" -->
 				</tr>
 			</c:forEach>
-			<tr>
+			<!-- <tr>
 				<td>1</td>
 				<td>高等数学</td>
 				<td>林奕武</td>
@@ -153,7 +157,7 @@
 					<button class="btn btn-success" onclick="window.location.href('"
 						admin/comment/list?pageIndex=" + index')">删除</button>
 				</td>
-			</tr>
+			</tr> -->
 
 		</table>
 		<!-- 分页 -->

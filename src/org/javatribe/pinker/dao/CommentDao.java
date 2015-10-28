@@ -52,4 +52,12 @@ public interface CommentDao extends BaseDao<org.javatribe.pinker.entity.Comment>
 	public List<Comment> getCommentByCourseIdSet(Integer[] courseids);
 	
 	public List<Comment> getCommentByCourseIdSetAndFirstresult(Integer[] courseids,int firstResult);
+
+	/**
+	 * 根据用户的ID获取其评论 
+	 * @param id
+	 * @return
+	 */
+	public List<Comment> getCommentsByCommentatorId(int id);
+	
 }

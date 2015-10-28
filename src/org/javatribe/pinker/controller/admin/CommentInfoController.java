@@ -34,7 +34,7 @@ public class CommentInfoController {
 		if(pager.getTotalCount()==0){
 			pager = new Pager();
 			pager.setPageIndex(1);
-			pager.setPageSize(1);
+			pager.setPageSize(5);
 			pager.setHasPreviousPage(false);
 		}
 		
@@ -50,7 +50,7 @@ public class CommentInfoController {
 		if(pager.getTotalCount()==0){
 			pager = new Pager();
 			pager.setPageIndex(1);
-			pager.setPageSize(1);
+			pager.setPageSize(5);
 			pager.setHasPreviousPage(false);
 		}
 		pager.setPageIndex(pageIndex);
@@ -69,7 +69,7 @@ public class CommentInfoController {
 		if(pager.getTotalCount()==0){
 			pager = new Pager();
 			pager.setPageIndex(1);
-			pager.setPageSize(1);
+			pager.setPageSize(5);
 			pager.setHasPreviousPage(false);
 		}
 		
@@ -80,5 +80,7 @@ public class CommentInfoController {
 		
 		return "admin/commentList";
 	}
+	
+//	public String 
 	
 }
