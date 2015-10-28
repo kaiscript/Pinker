@@ -83,5 +83,11 @@ public class CommentServiceImpl implements CommentService {
 			int firstResult) {
 		return commentDao.getCommentByCourseIdAndFirstresult(courseId, firstResult);
 	}
+
+	@Override
+	public List<Comment> getCommentsByCommentatorId(int id) {
+		// TODO Auto-generated method stub
+		return commentDao.getCommentsByCommentatorId(id);
+	}
 	
 }

@@ -1,5 +1,6 @@
 package org.javatribe.pinker.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -58,6 +59,13 @@ public class CommentDaoImpl extends BaseDaoImpl<org.javatribe.pinker.entity.Comm
 		criteria.add(Restrictions.eq("course.crs_id",courseId));
 		criteria.setFirstResult(firstResult);
 		criteria.setMaxResults(10);
+		return (List<Comment>)criteria.list();
+	}
+
+	@Override
+	public List<Comment> getCommentsByCommentatorId(int id) {
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.add(Restrictions.eq("cmt_reply_user_id",id));
 		return (List<Comment>)criteria.list();
 	}
 

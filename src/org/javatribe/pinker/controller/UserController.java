@@ -93,7 +93,7 @@ public class UserController {
 				s.setStu_pw_answer(pw_answer);
 				s.setStu_pw_question(pw_question);
 
-				studentService.save(s);
+				isScuccess = studentService.save(s);
 
 			}
 		} else {
@@ -112,11 +112,11 @@ public class UserController {
 				t.setTch_pw_answer(pw_answer);
 				t.setTch_pw_question(pw_question);
 
-				teacherService.save(t);
+				isScuccess = teacherService.save(t);
 			}
 		}
 
-		registerJson.put("isScuccess", isScuccess);
+		registerJson.put("isSuccess", isScuccess);
 		return registerJson;
 	}
 
