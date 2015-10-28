@@ -117,12 +117,17 @@ public class CommentReturnController {
 		JSONArray commentsJson = new JSONArray();
 		for(Comment c:comments){
 			JSONObject json=new JSONObject();
+			String username = getName(c.getCmt_user_id());
 			json.put("commentId", c.getCmt_id());
-			json.put("courseId", c.getCourse().getCrs_id());
 			json.put("userId",c.getCmt_user_id());
-			json.put("commentContent",c.getCmt_content());
 			json.put("userHeadImg", getHeadImg(c.getCmt_user_id()));
+			json.put("userName", username);
+			json.put("teaName", c.getCourse().getCrs_teacher_name());
+			json.put("courseId", c.getCourse().getCrs_id());
+			json.put("courseName", c.getCourse().getCrs_name());
+			json.put("courseDesc", c.getCourse().getCrs_desc());
 			json.put("data",FormatTrans.getHowLongTime(c.getCmt_time()));
+			json.put("content", c.getCmt_content());
 			json.put("good", c.getCmt_like_number());
 			json.put("bad", c.getCmt_against_number());
 			commentsJson.add(json);
