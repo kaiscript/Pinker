@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +41,7 @@ public class Comment {
 	private int cmt_report_number;
 	private int cmt_reply_user_id;
 	private Comment comment_reply;
+	private Wonderful_comment wer_comment;
 	private Course course;
 
 	private Set<Comment> reply_comments = new HashSet<Comment>();
@@ -184,12 +186,22 @@ public class Comment {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
+	
+	@OneToOne(mappedBy="comment")
+	public Wonderful_comment getWer_comment() {
+		return wer_comment;
+	}
+
+	public void setWer_comment(Wonderful_comment wer_comment) {
+		this.wer_comment = wer_comment;
+	}
 
 	public Comment(int cmt_id, int cmt_user_id, Date cmt_time,
 			String cmt_crs_label, String cmt_content, int cmt_star,
 			boolean cmt_is_anon, int cmt_like_number, int cmt_against_number,
-			int cmt_report_number, int cmt_reply_user_id, Comment cmt_reply,
-			Course cmt_crs) {
+			int cmt_report_number, int cmt_reply_user_id,
+			Comment comment_reply, Wonderful_comment wer_comment,
+			Course course, Set<Comment> reply_comments, Set<Report> reports) {
 		super();
 		this.cmt_id = cmt_id;
 		this.cmt_user_id = cmt_user_id;
@@ -202,12 +214,15 @@ public class Comment {
 		this.cmt_against_number = cmt_against_number;
 		this.cmt_report_number = cmt_report_number;
 		this.cmt_reply_user_id = cmt_reply_user_id;
-		this.comment_reply = cmt_reply;
-		this.course = cmt_crs;
+		this.comment_reply = comment_reply;
+		this.wer_comment = wer_comment;
+		this.course = course;
+		this.reply_comments = reply_comments;
+		this.reports = reports;
 	}
 
 	public Comment() {
 		super();
 	}
-
+	
 }

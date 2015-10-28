@@ -57,8 +57,7 @@
 				}
 			}
 		};
-		req.open("POST", "major/getMajorSelect/" + $("#selectDepartment").val()
-				+ "?json", true);
+		req.open("POST", "major/getMajorSelect/" + $("#selectDepartment").val(), true);
 		req.send(null);
 	}
 

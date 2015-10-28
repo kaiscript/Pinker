@@ -51,6 +51,7 @@ public class CommentDaoImpl extends BaseDaoImpl<org.javatribe.pinker.entity.Comm
 		return criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comment> getCommentByCourseIdAndFirstresult(int courseId,int firstResult) {
 		Criteria criteria = getSession().createCriteria(Comment.class);
@@ -61,4 +62,25 @@ public class CommentDaoImpl extends BaseDaoImpl<org.javatribe.pinker.entity.Comm
 		return (List<Comment>)criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> getCommentByCourseIdSet(Integer[] courseids) {
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.addOrder(Order.desc("cmt_id"));
+		criteria.add(Restrictions.in("course.crs_id", courseids));
+		return (List<Comment>)criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> getCommentByCourseIdSetAndFirstresult(Integer[] courseids,int firstResult){
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.addOrder(Order.desc("cmt_id"));
+		criteria.add(Restrictions.in("course.crs_id", courseids));
+		criteria.setFirstResult(firstResult);
+		criteria.setMaxResults(10);
+		return (List<Comment>)criteria.list();
+	}
+	
+	
 }

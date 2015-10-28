@@ -83,5 +83,16 @@ public class CommentServiceImpl implements CommentService {
 			int firstResult) {
 		return commentDao.getCommentByCourseIdAndFirstresult(courseId, firstResult);
 	}
+
+	@Override
+	public List<Comment> getCommentByCourseIdSet(Integer[] courseids) {
+		return commentDao.getCommentByCourseIdSet(courseids);
+	}
+
+	@Override
+	public List<Comment> getCommentByCourseIdSetAndFirstresult(
+			Integer[] courseids, int firstResult) {
+		return commentDao.getCommentByCourseIdSetAndFirstresult(courseids, firstResult);
+	}
 	
 }

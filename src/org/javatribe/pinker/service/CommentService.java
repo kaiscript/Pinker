@@ -35,4 +35,8 @@ public interface CommentService {
 	public List<Comment> getCommentsByCourseId(int courseId);
 	
 	public List<Comment> getCommentByCourseIdAndFirstresult(int courseId,int firstResult);
+	
+	public List<Comment> getCommentByCourseIdSet(Integer[] courseids);
+	
+	public List<Comment> getCommentByCourseIdSetAndFirstresult(Integer[] courseids,int firstResult);
 }
