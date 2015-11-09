@@ -20,6 +20,8 @@ public interface WonderfulCommentService {
 	public List<Wonderful_comment> getByIdSet(Integer[] ids);
 
 	public List<Wonderful_comment> getAllList();
+	
+	public List<Wonderful_comment> getListByFirstresult(int firstResult);
 
 	public Pager findByPager(Pager pager);
 }

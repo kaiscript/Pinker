@@ -1,5 +1,9 @@
 package org.javatribe.pinker.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.javatribe.pinker.dao.WonderfulCommentDao;
 import org.javatribe.pinker.entity.Wonderful_comment;
 import org.springframework.stereotype.Repository;
@@ -11,4 +15,14 @@ import org.springframework.stereotype.Repository;
 public class WonderfulCommentDaoImpl extends BaseDaoImpl<Wonderful_comment>
 		implements WonderfulCommentDao {
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Wonderful_comment> getListByFirstresult(int firstResult) {
+		Criteria criteria = getSession().createCriteria(Wonderful_comment.class);
+		criteria.addOrder(Order.desc("wer_cmt_id"));
+		criteria.setFirstResult(firstResult);
+		criteria.setMaxResults(10);
+		return (List<Wonderful_comment>)criteria.list();
+	}
+			
 }

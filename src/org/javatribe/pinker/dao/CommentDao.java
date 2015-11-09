@@ -15,6 +15,10 @@ import org.javatribe.pinker.entity.Comment;
  * 2015年10月11日 下午11:08:46
  * 增加 public List<Comment> getByFirstresult(int firstResult)
  * public List<Comment> getCommentsByCourseId(int courseId)
+ * public List<Comment> getCommentByCourseIdAndFirstresult(int courseId,int firstResult);
+ * public List<Comment> getCommentByCourseIdSet(Integer[] courseids);
+   public List<Comment> getCommentByCourseIdSetAndFirstresult(Integer[] courseids,int firstResult);
+
  */
 public interface CommentDao extends BaseDao<org.javatribe.pinker.entity.Comment> {
 	
@@ -51,6 +55,12 @@ public interface CommentDao extends BaseDao<org.javatribe.pinker.entity.Comment>
 	 */
 	public List<Comment> getCommentByCourseIdSet(Integer[] courseids);
 	
+	/**
+	 * 根据 多门课程和firstResult获取评论列表，10条数据
+	 * @param courseids
+	 * @param firstResult
+	 * @return
+	 */
 	public List<Comment> getCommentByCourseIdSetAndFirstresult(Integer[] courseids,int firstResult);
 
 	/**

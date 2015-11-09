@@ -13,6 +13,7 @@ import org.javatribe.pinker.service.StudentService;
 import org.javatribe.pinker.service.WonderfulCommentService;
 import org.javatribe.pinker.util.FormatTrans;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,8 +43,26 @@ public class WonderfulCommentReturnController {
 	@RequestMapping(value="/all.json",method=RequestMethod.GET)
 	@ResponseBody
 	public JSONArray getAll(){
-		JSONArray JSONarr = new JSONArray();
 		List<Wonderful_comment> comments = wonderfulCommentService.getAllList();
+		JSONArray jsonArr = getCommentsJSONArray(comments);
+		return jsonArr;
+	}
+	
+	@RequestMapping(value = "/{firstResult}.json",method=RequestMethod.GET)
+	@ResponseBody
+	public JSONArray getCommentsByFirstresult(@PathVariable int firstResult){
+		List<Wonderful_comment> comments = wonderfulCommentService.getListByFirstresult(firstResult);
+		JSONArray jsonArr = getCommentsJSONArray(comments);
+		return jsonArr;
+	}
+	
+	/**
+	 * 评论JSONArray数组
+	 * @param comments
+	 * @return
+	 */
+	public JSONArray getCommentsJSONArray(List<Wonderful_comment> comments){ 
+		JSONArray jsonArr = new JSONArray();
 		for(Wonderful_comment c:comments){
 			JSONObject json = new JSONObject();
 			String username = getName(c.getComment().getCmt_user_id());
@@ -59,9 +78,9 @@ public class WonderfulCommentReturnController {
 			json.put("content", c.getComment().getCmt_content());
 			json.put("good", c.getComment().getCmt_like_number());
 			json.put("bad", c.getComment().getCmt_against_number());
-			
+			jsonArr.add(json);
 		}
-		return JSONarr;
+		return jsonArr;
 	}
 	
 	/**
@@ -83,7 +102,6 @@ public class WonderfulCommentReturnController {
 
 	/**
 	 * 根据用户id长度判断是学生还是教师，从而去对应的学生或教师表查询 用户头像url
-	 * 
 	 * @param user_id
 	 * @return
 	 */

@@ -148,7 +148,9 @@ public class Comment {
 	public void setCmt_reply_user_id(int cmt_replay_user_id) {
 		this.cmt_reply_user_id = cmt_replay_user_id;
 	}
-
+	
+	
+	
 	@ManyToOne
 	@JoinColumn(name="cmt_reply_id",nullable=true)
 	public Comment getComment_reply() {
@@ -158,17 +160,7 @@ public class Comment {
 	public void setComment_reply(Comment cmt_reply) {
 		this.comment_reply = cmt_reply;
 	}
-
-	@ManyToOne
-	@JoinColumn(name="cmt_crs_id", nullable=false)
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-
+	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment_reply")
 	public Set<Comment> getReply_comments() {
 		return reply_comments;
@@ -177,6 +169,19 @@ public class Comment {
 	public void setReply_comments(Set<Comment> reply_comments) {
 		this.reply_comments = reply_comments;
 	}
+	
+	
+	
+	@ManyToOne
+	@JoinColumn(name="cmt_crs_id", nullable=false)
+	public Course getCourse() {
+		return course;
+	}
+	
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="comment")
 	public Set<Report> getReports() {
@@ -196,12 +201,13 @@ public class Comment {
 		this.wer_comment = wer_comment;
 	}
 
+
 	public Comment(int cmt_id, int cmt_user_id, Date cmt_time,
 			String cmt_crs_label, String cmt_content, int cmt_star,
 			boolean cmt_is_anon, int cmt_like_number, int cmt_against_number,
 			int cmt_report_number, int cmt_reply_user_id,
 			Comment comment_reply, Wonderful_comment wer_comment,
-			Course course, Set<Comment> reply_comments, Set<Report> reports) {
+			Course course, Set<Report> reports) {
 		super();
 		this.cmt_id = cmt_id;
 		this.cmt_user_id = cmt_user_id;
@@ -217,7 +223,6 @@ public class Comment {
 		this.comment_reply = comment_reply;
 		this.wer_comment = wer_comment;
 		this.course = course;
-		this.reply_comments = reply_comments;
 		this.reports = reports;
 	}
 

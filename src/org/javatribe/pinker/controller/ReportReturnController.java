@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/** @author kaiscript
+ * 2015年10月30日 下午7:53:19
+ */
 @Controller
 @RequestMapping("/report")
 public class ReportReturnController {
@@ -27,8 +30,10 @@ public class ReportReturnController {
 	@Resource(name = "commentServiceImpl")
 	private CommentService commentService;
 	
-	
-	
+	/**
+	 * 获取所有举报内容
+	 * @return
+	 */
 	@RequestMapping(value = "/all.json",method=RequestMethod.GET)
 	@ResponseBody
 	public JSONArray getAllReport(){

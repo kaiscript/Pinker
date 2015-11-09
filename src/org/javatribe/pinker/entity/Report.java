@@ -14,6 +14,7 @@ import javax.persistence.Table;
  *2015年7月29日 下午3:56:22
  */
 
+
 @Entity
 @Table(name = "report")
 public class Report {

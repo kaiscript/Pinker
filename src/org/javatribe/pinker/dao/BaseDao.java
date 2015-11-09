@@ -46,6 +46,7 @@ public interface BaseDao<T> {
 	 * @return 数据库表中所有的记录
 	 */
 	public List<T> getAllList();
+	
 	/**
 	 * 根据分页查找记录的方法
 	 * @param pager - 分页信息的实体类
@@ -56,6 +57,5 @@ public interface BaseDao<T> {
 	 * 获取会话工厂的方法
 	 * @return hibernate的会话工厂
 	 */
-	
 	public SessionFactory getSessionFactory();
 }

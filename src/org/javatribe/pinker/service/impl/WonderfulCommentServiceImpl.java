@@ -52,6 +52,12 @@ public class WonderfulCommentServiceImpl implements WonderfulCommentService {
 		return wonderfulCommentDao.getAllList();
 	}
 
+	
+	@Override
+	public List<Wonderful_comment> getListByFirstresult(int firstResult) {
+		return wonderfulCommentDao.getListByFirstresult(firstResult);
+	}
+
 	@Override
 	public Pager findByPager(Pager pager) {
 		return wonderfulCommentDao.findByPager(pager);

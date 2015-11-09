@@ -28,6 +28,23 @@
 		submitPager(parseInt($("#indexA").text()) + 1);
 	}
 	
+	function deleteComment(id,commentId){
+		
+		$.ajax({
+			type : 'POST',
+			url : 'admin/report/delete/comment'+commentId,
+			data : {
+			},
+			dateType : 'json',
+			success : function(data) {
+				if(data.code==0){
+					alert("删除评论成功");
+					$("#"+id).slideUp("slow");
+				}
+				
+			}
+		});
+	}
 </script>
 
 </head>
@@ -56,18 +73,20 @@
 								<th>评价所属课程</th>
 								<th>课程教师</th>
 								<th>评价内容</th>
+								<th>举报次数</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:set var="datas" value="${reportPager.datas }"/>
 							<c:forEach items="${datas }" var="r" varStatus="status">
-								<tr>
+								<tr id="${status.index }">
 									<td>${r.comment.cmt_id }</td>
 									<td>${r.comment.course.crs_name }</td>
 									<td>${r.comment.course.crs_teacher_name }</td>
 									<td>${r.comment.cmt_content }</td>
+									<td>${r.comment.cmt_report_number }</td>
 									<td>
-									<a href="admin/student/editStudent/id${s.stu_id }"><span class="label label-default">处理...</span></a>
+									<a href="javascript:void(0)" onclick="deleteComment('${status.index }','${r.comment.cmt_id }')"><span class="label label-default">删除评论</span></a>
 										
 									</td>
 									<input id="hiddenId${status.index }" type="hidden" value="${status.index }"/>

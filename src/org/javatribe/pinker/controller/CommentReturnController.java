@@ -8,7 +8,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.javatribe.pinker.entity.Comment;
-import org.javatribe.pinker.entity.Course;
 import org.javatribe.pinker.entity.Student;
 import org.javatribe.pinker.service.CommentService;
 import org.javatribe.pinker.service.CourseService;
@@ -61,21 +60,25 @@ public class CommentReturnController {
 	@ResponseBody
 	public JSONArray getAttentionComment(@PathVariable int stu_id){
 		
-		Student student = studentService.getById(stu_id);
-		String attentionCourse = student.getStu_attn_crs_ids();
-		String[] strCourses = attentionCourse.split(",");
-		Integer[] coursesIdSet = new Integer[strCourses.length];
-		for(int i=0;i<strCourses.length;i++){
-			coursesIdSet[i]=Integer.parseInt(strCourses[i]);
-		}
-		List<Comment> comments = commentService.getCommentByCourseIdSet(coursesIdSet);
+		List<Comment> comments = commentService.
+				getCommentByCourseIdSet(getCourseIdSet(stu_id));
 		JSONArray jsonArr = getCommentsJSONArray(comments);
 		return jsonArr;
 	}
 	
+	/**
+	 * 根据学生id 获取其关注课程的评论，从firstResult开始的10条评论
+	 * @param stu_id
+	 * @param firstResult
+	 * @return
+	 */
 	@RequestMapping(value = "/attention/{stu_id}/{firstResult}.json",method=RequestMethod.GET)
-	public JSONArray getAttentionCommentByFirstresult(@PathVariable int firstResult){
-		JSONArray jsonArr = new JSONArray();
+	@ResponseBody
+	public JSONArray getAttentionCommentByFirstresult(@PathVariable int stu_id,@PathVariable int firstResult){
+		
+		List<Comment> comments = commentService.
+				getCommentByCourseIdSetAndFirstresult(getCourseIdSet(stu_id), firstResult);
+		JSONArray jsonArr =  getCommentsJSONArray(comments);
 		return jsonArr;
 	}
 	
@@ -214,5 +217,22 @@ public class CommentReturnController {
 			return student.getStu_head_img();
 		}
 		return "";
+	}
+	
+	
+	/**
+	 * 根据学生id取得所关注课程的idSet
+	 * @param stu_id
+	 * @return
+	 */
+	public Integer[] getCourseIdSet(int stu_id){
+		Student student = studentService.getById(stu_id);
+		String attentionCourse = student.getStu_attn_crs_ids();
+		String[] strCourses = attentionCourse.split(",");
+		Integer[] coursesIdSet = new Integer[strCourses.length];
+		for(int i=0;i<strCourses.length;i++){
+			coursesIdSet[i]=Integer.parseInt(strCourses[i]);
+		}
+		return coursesIdSet;
 	}
 }
