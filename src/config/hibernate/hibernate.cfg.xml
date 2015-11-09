@@ -19,6 +19,7 @@
 	<mapping class="org.javatribe.pinker.entity.Major" />
 	<mapping class="org.javatribe.pinker.entity.Admin" />
 	<mapping class="org.javatribe.pinker.entity.Picture" />
+	<mapping class="org.javatribe.pinker.entity.Wonderful_comment" />
 
 
 </session-factory>

@@ -90,6 +90,15 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
+	public List<Comment> getCommentByCourseIdSet(Integer[] courseids) {
+		return commentDao.getCommentByCourseIdSet(courseids);
+	}
+
+	@Override
+	public List<Comment> getCommentByCourseIdSetAndFirstresult(
+			Integer[] courseids, int firstResult) {
+		return commentDao.getCommentByCourseIdSetAndFirstresult(courseids, firstResult);
+		}
 	public List<Comment> getCommentsByCommentatorId(int id) {
 		// TODO Auto-generated method stub
 		return commentDao.getCommentsByCommentatorId(id);
