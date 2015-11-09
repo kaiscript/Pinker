@@ -53,4 +53,11 @@ public interface CommentDao extends BaseDao<org.javatribe.pinker.entity.Comment>
 	 */
 	public List<Comment> getCommentsByCommentatorId(int id);
 	
+	
+	/**
+	 * 根据原评论的ID获取对其回复的评论
+	 * @param commentId
+	 * @return
+	 */
+	public List<Comment> getReplyCommentsByOriComment(int commentId);
 }

@@ -12,6 +12,7 @@ import org.javatribe.pinker.service.DepartmentService;
 import org.javatribe.pinker.service.MajorService;
 import org.javatribe.pinker.service.StudentService;
 import org.javatribe.pinker.service.TeacherService;
+import org.javatribe.pinker.util.FormatTrans;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -252,6 +253,39 @@ public class UserController {
 		}
 		checkIdJson.put("isRegistered", isRegistered);
 		return checkIdJson;
+	}
+	
+	/**
+	 * 通过用户ID查看用户信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/myInfo/{id}.json")
+	@ResponseBody
+	public JSONObject getMyInformation(@PathVariable int id){
+		JSONObject infoJson = new JSONObject();
+		if(isStudent(id)){
+			Student s = studentService.getById(id);
+			infoJson.put("name", s.getStu_name());
+			infoJson.put("id", s.getStu_id());
+			infoJson.put("sex", s.getStu_sex());
+			infoJson.put("deparment", s.getDepartment().getDept_name());
+			infoJson.put("major", s.getMajor().getMaj_name());
+			infoJson.put("registerTime", FormatTrans.getTime( s.getStu_regist_time()));
+			infoJson.put("perSign", s.getStu_per_sig());
+			infoJson.put("head", s.getStu_head_img());
+		}else{
+			Teacher t = teacherService.getById(id);
+			infoJson.put("name", t.getTch_name());
+			infoJson.put("id", t.getTch_id());
+			infoJson.put("sex", t.getTch_sex());
+			infoJson.put("deparment", t.getDepartment().getDept_id());
+			infoJson.put("registerTime", t.getTch_regist_time());
+			infoJson.put("perSign", t.getTch_per_sig());
+			infoJson.put("head", t.getTch_head_img());
+			
+		}
+		return infoJson;
 	}
 
 	/**
