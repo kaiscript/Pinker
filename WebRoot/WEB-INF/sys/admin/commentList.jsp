@@ -94,7 +94,7 @@
 					</c:if>
 				<%-- 	<td>${c.cmt_like_number }/${c.cmt_against_number }</td> --%>
 					<td>${c.cmt_report_number }</td>
-					<td><a href="admin/comment/delete?id=${ c.cmt_id}"><button
+					<td><a href=""><button
 								class="btn btn-danger">详情</button></a> <a href="admin/comment/delete?id=${ c.cmt_id}"><button
 								class="btn btn-success">删除</button> </a></td>
 					<!-- data-target=".bs-example-modal-sm" 	data-target="#deleteConfirmModal" data-toggle="modal" -->

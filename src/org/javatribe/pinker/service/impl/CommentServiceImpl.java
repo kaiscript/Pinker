@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Session;
 import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.dao.CommentDao;
 import org.javatribe.pinker.entity.Comment;
@@ -33,6 +34,10 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public boolean delete(Comment comment) {
 		// TODO Auto-generated method stub
+		//先删除关联的记录
+//			List<Comment> comments = commentDao.getReplyCommentsByOriComment(comment.getCmt_id());
+//				for(Comment c: comments)
+//					commentDao.delete(c);
 		return commentDao.delete(comment);
 	}
 

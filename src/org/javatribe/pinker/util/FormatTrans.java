@@ -55,9 +55,18 @@ public class FormatTrans {
 		
 	}
 	
+	/**
+	 * 将Date类型的变量转换成String，以便返回json
+	 * “年-月-日”的格式，取消掉具体时间
+	 * @param date
+	 * @return
+	 */
+	public static String getTime(Date date){
+		return date.toString().substring(0,10);
+	}
+	
 	@Test
 	public void test(){
-		
 //		System.out.println(getHowLongTime(1444557501955l));
 	}
 	

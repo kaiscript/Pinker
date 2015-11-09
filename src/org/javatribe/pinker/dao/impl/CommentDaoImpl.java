@@ -91,4 +91,15 @@ public class CommentDaoImpl extends BaseDaoImpl<org.javatribe.pinker.entity.Comm
 		return (List<Comment>)criteria.list();
 	}
 
+	@Override
+	public List<Comment> getReplyCommentsByOriComment(int oriCommentId) {
+		// TODO Auto-generated method stub
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.add(Restrictions.eq("comment_reply.cmt_id", oriCommentId));
+		
+		return (List<Comment>)criteria.list();
+		
+	}
+
+
 }

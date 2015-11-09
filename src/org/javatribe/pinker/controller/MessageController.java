@@ -34,6 +34,7 @@ public class MessageController {
 	
 	/**
 	 * 根据用户ID来获得对其评价回复的评价
+	 * （别人对自己的评论点赞的提醒仍未做）
 	 * @param user_id
 	 * @return
 	 */
