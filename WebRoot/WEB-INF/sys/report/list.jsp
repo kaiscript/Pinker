@@ -64,7 +64,7 @@
 			<div class="col-sm-11">
 				<h1 class="page-header">举报信息</h1>
 
-				<h2 class="sub-header">xxx</h2>
+				<h2 class="sub-header">详情</h2>
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead>

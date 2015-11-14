@@ -53,7 +53,7 @@ public class ReportController {
 		if(pager.getTotalCount()==0){
 			pager = new Pager();
 			pager.setPageIndex(1);
-			pager.setPageSize(2);
+			pager.setPageSize(4);
 			pager.setHasPreviousPage(false);// 第一页，故设置为无上一页
 		}
 		pager = reportService.findByPager(pager);
@@ -76,7 +76,7 @@ public class ReportController {
 		if (pager.getTotalCount() == 0) {
 			pager = new Pager();
 			pager.setPageIndex(1);
-			pager.setPageSize(2);
+			pager.setPageSize(4);
 			pager.setHasPreviousPage(false);// 第一页，故设置为无上一页
 
 			Map<String, Order> orderMap = new HashMap<String, Order>();

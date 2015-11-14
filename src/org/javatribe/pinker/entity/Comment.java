@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "comment1")
+@Table(name = "comment")
 public class Comment {
 
 	private int cmt_id;

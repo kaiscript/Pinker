@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author Mars
- * 
- *         2015年8月30日 下午2:32:45
+ * @author yeungkacent
+ *
+ * 2015年11月13日 下午9:51:42
  */
-
 @Service("courseServiceImpl")
 @Transactional  
 public class CourseServiceImpl implements CourseService{
@@ -65,5 +64,19 @@ public class CourseServiceImpl implements CourseService{
 		// TODO Auto-generated method stub
 		return courseDao.findByPager(pager);
 	} 
+	
+	@Override
+	public List<Course> getCourseByCourseId(int courseId){
+		// TODO Auto-generated method stub
+		return courseDao.getCourseByCourseId(courseId);
+	}
 
+	@Override
+	public List<Course> getCourseByMajorId(int majorId) {
+		// TODO Auto-generated method stub
+		return courseDao.getCourseByMajorId(majorId);
+	}
+
+	
+	
 }

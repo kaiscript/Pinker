@@ -7,11 +7,10 @@ import org.javatribe.pinker.entity.Comment;
 import org.javatribe.pinker.entity.Course;
 
 /**
- * @author Mars
+ * @author yeungkacent
  *
- *2015年8月30日 下午2:29:49
+ * 2015年11月13日 下午9:51:09
  */
-
 public interface CourseService {
 
 	public boolean save(Course course);
@@ -27,6 +26,10 @@ public interface CourseService {
 	public List<Course> getAllList();
 	
 	public Pager findByPager(Pager pager);
+	
+	public List<Course> getCourseByCourseId(int courseId);
+	
+	public List<Course> getCourseByMajorId(int majorId);
 	
 	
 }
