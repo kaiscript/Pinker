@@ -256,6 +256,36 @@ public class UserController {
 	}
 	
 	/**
+	 * 通过用户ID设置个人简介
+	 * @param id
+	 * @param profile
+	 * @return
+	 */
+	@RequestMapping(value="/modifyProfile/{id}/{profile}.json")
+	@ResponseBody
+	public JSONObject modifyProfile(@PathVariable int id, @PathVariable String profile){
+		JSONObject returnJson = new JSONObject();
+		boolean isSuccess = false;
+		if(isStudent(id)){
+			Student s = studentService.getById(id);
+			if(s!=null){
+				s.setStu_per_sig(profile);
+				isSuccess = true;
+				studentService.save(s);
+			}
+		}else{
+			Teacher t = teacherService.getById(id);
+			if(t!=null){
+				t.setTch_per_sig(profile);
+				isSuccess = true;
+				teacherService.save(t);
+			}
+		}
+		returnJson.put("isSuccess", isSuccess);
+		return returnJson;
+	}
+	
+	/**
 	 * 通过用户ID查看用户信息
 	 * @param id
 	 * @return

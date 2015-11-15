@@ -1,5 +1,7 @@
 package org.javatribe.pinker.controller.admin;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.javatribe.pinker.common.Pager;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Mars
@@ -81,6 +84,18 @@ public class CommentInfoController {
 		return "admin/commentList";
 	}
 	
-//	public String 
+	@RequestMapping(value="/search")
+	public String search(@RequestParam("keyword") String keyword, Model model, Pager pager){
+		if(pager.getTotalCount()==0){
+			pager = new Pager();
+			pager.setPageIndex(1);
+			pager.setPageSize(5);
+			pager.setHasPreviousPage(false);
+		}
+		pager = commentService.getByKeyword(keyword, pager);
+		pager.init();
+		model.addAttribute("commentPager", pager);
+		return "admin/commentList";
+	}
 	
 }

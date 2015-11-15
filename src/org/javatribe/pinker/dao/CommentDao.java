@@ -2,6 +2,7 @@ package org.javatribe.pinker.dao;
 
 import java.util.List;
 
+import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.entity.Comment;
 
 /**
@@ -77,4 +78,12 @@ public interface CommentDao extends BaseDao<org.javatribe.pinker.entity.Comment>
 	 * @return
 	 */
 	public List<Comment> getReplyCommentsByOriComment(int commentId);
+
+
+	/**
+	 * 根据关键字搜索评价，返回Pager对象
+	 * @param keyword
+	 * @return
+	 */
+	public Pager getByKeyword(String keyword, Pager pager);
 }

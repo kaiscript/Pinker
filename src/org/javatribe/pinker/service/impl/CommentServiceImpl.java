@@ -103,5 +103,11 @@ public class CommentServiceImpl implements CommentService {
 		// TODO Auto-generated method stub
 		return commentDao.getCommentsByCommentatorId(id);
 	}
+
+	@Override
+	public Pager getByKeyword(String keyword, Pager pager) {
+		// TODO Auto-generated method stub
+		return commentDao.getByKeyword(keyword, pager);
+	}
 	
 }

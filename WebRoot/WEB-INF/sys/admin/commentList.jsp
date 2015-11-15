@@ -35,10 +35,10 @@
 	function deleteMessage(id) {
 		alert(id);
 	}
-	
-	function dodel(id){
-		$('.modal').modal('show').on('shown',function(){
-			$(".btn-primary").attr('href','Del.asp?id='+id);
+
+	function dodel(id) {
+		$('.modal').modal('show').on('shown', function() {
+			$(".btn-primary").attr('href', 'Del.asp?id=' + id);
 		});
 	}
 </script>
@@ -47,17 +47,14 @@
 
 <body>
 	<div style="margin: 50px 100px">
-		<div class="col-lg-4">
-			<div class="input-group">
-				<form action="" method="">
+			<div class="input-group col-md-3">
+				<form action="admin/comment/search" method="">
 					<input type="text" class="form-control"
-						placeholder="搜索课程，用课程名 / 教师名搜索"> <span class="input-group-btn"> <input type="submit"
-						class="btn btn-default" value="Go !" /> 
-				</span>
+						placeholder="搜索课程，用课程名 / 教师名搜索" name="keyword"> <input type="submit"
+						class="btn btn-default" value="Go !" />
 				</form>
 			</div>
 			<!-- /input-group -->
-		</div>
 		<!-- /.col-lg-6 -->
 
 		<table class="table table-striped row table-bordered">
@@ -70,36 +67,38 @@
 				<th class="col-md-1">评价时间</th>
 				<th class="col-md-1">星级评价</th>
 				<th class="col-md-1">标签</th>
-				<th class="col-md-3">内容评价</th>
+				<th class="col-md-3">内容评价</th> 
 				<th class="col-md-1">是否匿名</th>
-			<!-- 	<th class="col-md-1">赞同数/反对数</th> -->
+				<!-- 	<th class="col-md-1">赞同数/反对数</th> -->
 				<th class="col-md-1">举报数</th>
 				<th class="col-md-2">评论操作</th>
 			</tr>
 			<c:set var="datas" value="${commentPager.datas }" />
 			<c:forEach items="${datas }" var="c" varStatus="status">
 				<tr>
-					<td>${status.index+1} </td>
+					<td>${status.index+1}</td>
 					<td>${c.cmt_user_id }</td>
 					<td><h6>${c.cmt_time }</h6></td>
 					<td>${c.cmt_star }</td>
 					<td>${c.cmt_crs_label }</td>
 					<td>${c.cmt_content }</td>
-					<c:if  test="${c.cmt_is_anon==true }">
+					<c:if test="${c.cmt_is_anon==true }">
 						<td><span class="glyphicon glyphicon glyphicon glyphicon-ok"
 							aria-hidden="true"></span></td>
 					</c:if>
 					<c:if test="${c.cmt_is_anon==false }">
 						<td></td>
 					</c:if>
-				<%-- 	<td>${c.cmt_like_number }/${c.cmt_against_number }</td> --%>
+					<%-- 	<td>${c.cmt_like_number }/${c.cmt_against_number }</td> --%>
 					<td>${c.cmt_report_number }</td>
-					<td><a href=""><button
-								class="btn btn-danger">详情</button></a> <a href="admin/comment/delete?id=${ c.cmt_id}"><button
+					<td><button type="button" class="btn btn-danger"
+							data-toggle="modal" data-target="#detailLabel">详情</button> <a
+						href="admin/comment/delete?id=${ c.cmt_id}"><button
 								class="btn btn-success">删除</button> </a></td>
 					<!-- data-target=".bs-example-modal-sm" 	data-target="#deleteConfirmModal" data-toggle="modal" -->
 				</tr>
 			</c:forEach>
+
 			<!-- <tr>
 				<td>1</td>
 				<td>高等数学</td>
@@ -202,7 +201,7 @@
 
 		<!-- 删除确认窗口 -->
 		<div class="modal fade" id="deleteConfirmModal" tabindex="-1"
-			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			role="dialog" aria-labelledby="detailLabel" aria-hidden="true">
 			<div class="modal-dialog" style="width:450px;">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -220,6 +219,74 @@
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal -->
+		</div>
+
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="detailLabel" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">评价详情</h4>
+					</div>
+					<div class="modal-body">
+					<form class="form-horizontal" role="form">
+					<!-- 头像 -->
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">用户学号：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="131544117" disabled="false"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">用户姓名：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="九九" disabled="false"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">课程名称：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="高等数学一" disabled="false"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">课程教师：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="林奕武" disabled="false"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">评课时间：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="44天前" disabled="false"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">评价内容：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="形象生动，黑板板书233333" disabled="false"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="stuId" class="col-sm-3 control-label">赞同数/反对数：</label>
+							<div class="col-sm-6">
+								 <input type="text" class="form-control" value="50/29" disabled="false"> 
+							</div>
+						</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div>
+			</div>
 		</div>
 </body>
 </html>
