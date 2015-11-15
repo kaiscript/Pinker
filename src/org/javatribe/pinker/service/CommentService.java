@@ -41,4 +41,6 @@ public interface CommentService {
 	public List<Comment> getCommentByCourseIdSetAndFirstresult(Integer[] courseids,int firstResult);
 
 	public List<Comment> getCommentsByCommentatorId(int id);
+
+	public Pager getByKeyword(String keyword, Pager pager);
 }
