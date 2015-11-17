@@ -138,6 +138,7 @@ public class CommentReturnController {
 		json.put("teaName", comment.getCourse().getCrs_teacher_name());
 		json.put("courseId", comment.getCourse().getCrs_id());
 		json.put("courseName", comment.getCourse().getCrs_name());
+		json.put("courseDesc", comment.getCourse().getCrs_desc());
 		json.put("data", FormatTrans.getHowLongTime(comment.getCmt_time()));
 		json.put("content", comment.getCmt_content());
 		json.put("good", comment.getCmt_like_number());
