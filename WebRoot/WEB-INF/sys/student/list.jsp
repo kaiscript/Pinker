@@ -49,7 +49,7 @@
 
 				<h2 class="sub-header">详情</h2>
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
 								<th>学号</th>
@@ -57,6 +57,7 @@
 								<th>性别</th>
 								<th>系别</th>
 								<th>专业</th>
+								<th>注册时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -69,11 +70,12 @@
 									<td>${s.stu_sex }</td>
 									<td>${s.department.dept_name }</td>
 									<td>${s.major.maj_name }</td>
+									<td>${s.stu_regist_time }</td>
 									<td>
 									<a href="admin/student/editStudent/id${s.stu_id }"><span class="label label-default">编辑</span></a>
-									<button type="button" class="btn btn-primary btn-xs"
+									<!-- <button type="button" class="btn btn-primary btn-xs"
 										data-toggle="modal" data-target="#studentEditModal"
-										onclick="">模态框编辑(待)</button>
+										onclick="">模态框编辑(待)</button> -->
 										
 									</td>
 									<input id="hiddenId${status.index }" type="hidden" value="${status.index }"/>

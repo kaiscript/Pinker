@@ -70,15 +70,15 @@
 
 				<h3 class="sub-header">课程列表</h3>
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>课程编号</th>
-								<th>课程名称</th>
-								<th>课程描述</th>
-								<th>任课老师</th>
-								<th>平均星级</th>
-								<th>操作</th>
+								<th class="col-sm-1">课程编号</th>
+								<th class="col-sm-1">课程名称</th>
+								<th class="col-sm-4">课程描述</th>
+								<th class="col-sm-1">任课老师</th>
+								<th class="col-sm-2">平均星级</th>
+								<th class="col-sm-1">操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -109,9 +109,9 @@
 									</td>
 									<td>
 									<a href="admin/courseInfo/editCourseInfo/id${s.crs_id }"><span class="label label-default">编辑</span></a>
-									<button type="button" class="btn btn-primary btn-xs"
+									<!-- <button type="button" class="btn btn-primary btn-xs"
 										data-toggle="modal" data-target="#courseEditModal"
-										onclick="">模态框编辑(待)</button>
+										onclick="">模态框编辑(待)</button> -->
 										
 									</td>
 									<input id="hiddenId${status.index }" type="hidden" value="${status.index }"/> 

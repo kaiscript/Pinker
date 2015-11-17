@@ -41,9 +41,9 @@ public class AdminInfoController {
 		Map<String, String> map = new HashMap<String, String>();
 		Admin admin = adminService.getAdminByUsername(account);
 			if (admin != null && password.equals(admin.getAdmin_password())) {
-					request.getSession().setAttribute("user", account); // 管理员验证成功则设置session
-					map.put("success", "true");
-					return map;
+				request.getSession().setAttribute("user", account); // 管理员验证成功则设置session
+				map.put("success", "true");
+				return map;
 			}
 			map.put("success", "false");
 			return map;
