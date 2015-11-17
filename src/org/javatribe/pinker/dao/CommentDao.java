@@ -86,4 +86,12 @@ public interface CommentDao extends BaseDao<org.javatribe.pinker.entity.Comment>
 	 * @return
 	 */
 	public Pager getByKeyword(String keyword, Pager pager);
+
+
+	/**
+	 * 根据原始评论者的ID获取回复评论
+	 * @param oriCommentatorId
+	 * @return
+	 */
+	List<Comment> getReplyCommentsByOriCommentatorId(int oriCommentatorId);
 }

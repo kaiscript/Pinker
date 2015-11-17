@@ -109,5 +109,11 @@ public class CommentServiceImpl implements CommentService {
 		// TODO Auto-generated method stub
 		return commentDao.getByKeyword(keyword, pager);
 	}
+
+	@Override
+	public List<Comment> getReplyCommentsByOriCommentatorId(int user_id) {
+		// TODO Auto-generated method stub
+		return commentDao.getReplyCommentsByOriCommentatorId(user_id);
+	}
 	
 }

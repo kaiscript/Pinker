@@ -94,7 +94,7 @@ public class CommentDaoImpl extends
 	@Override
 	public List<Comment> getCommentsByCommentatorId(int id) {
 		Criteria criteria = getSession().createCriteria(Comment.class);
-		criteria.add(Restrictions.eq("cmt_reply_user_id", id));
+		criteria.add(Restrictions.eq("cmt_user_id", id));
 		return (List<Comment>) criteria.list();
 	}
 
@@ -106,6 +106,13 @@ public class CommentDaoImpl extends
 
 		return (List<Comment>) criteria.list();
 
+	}
+	
+	@Override
+	public List<Comment> getReplyCommentsByOriCommentatorId(int oriCommentatorId){
+		Criteria criteria = getSession().createCriteria(Comment.class);
+		criteria.add(Restrictions.eq("cmt_reply_user_id", oriCommentatorId));
+		return (List<Comment>)criteria.list();
 	}
 
 	@Override
@@ -132,7 +139,6 @@ public class CommentDaoImpl extends
 		criteria = getSession().createCriteria(Comment.class);
 		criteria.add(Restrictions.like("cmt_crs_label", "%" + keyword + "%"));
 		comments.addAll(new HashSet((List<Comment>) criteria.list()));
-
 
 		pager.init();
 		pager.setDatas(new ArrayList(comments));

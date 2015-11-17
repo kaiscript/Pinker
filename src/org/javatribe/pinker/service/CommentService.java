@@ -43,4 +43,6 @@ public interface CommentService {
 	public List<Comment> getCommentsByCommentatorId(int id);
 
 	public Pager getByKeyword(String keyword, Pager pager);
+
+	public List<Comment> getReplyCommentsByOriCommentatorId(int user_id);
 }
