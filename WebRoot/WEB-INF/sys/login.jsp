@@ -45,7 +45,7 @@
 </script>
 
 <%@ include file="head.html"%>
-<title>登录</title>
+<title><h2><center>登 录</center></h2></title>
 </head>
 <body>
 	<div class="col-md-4"></div>
@@ -54,17 +54,17 @@
 		<br> <br> <br>
 
 		<form action="javascript:validate()">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h1 class="form-signin-heading" style="font-family:微软雅黑"><center><img alt="" src="pic/logo.png" width="50" > <font >登 陆</font></center></h1><br/>
 			<input type="text" id="account" class="form-control" name="account"
-				placeholder="Account"> <br> <input type="password"
+				placeholder="请输入您的账号"> <br> <input type="password"
 				id="password" class="form-control" name="password"
-				placeholder="Password"> <br>
+				placeholder="请输入您的密码"> <br>
 			<div class="checkbox">
 				<!-- <label> <input type="checkbox" value="1" onclick="getAuto()">记住我(忽略)
 				</label> -->
 			</div>
 			<button id="button" class="btn btn-lg btn-primary btn-block"
-				type="submit" onclick="validate()">Sign in</button>
+				type="submit" onclick="validate()">登陆</button>
 			<input type="hidden" id="autoLogin" name="autoLogin" value="0">	
 		</form>
 		<form id="loginForm" class="form-signin" action="validate/login">
