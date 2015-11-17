@@ -31,8 +31,8 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		//String requestUri=request.getRequestURI();
 		//String contextPath=request.getContextPath();
 		//String requestUrl=requestUri.substring(contextPath.length());
-		Admin admin=(Admin) request.getSession().getAttribute("user"); //通过session获取登陆管理员实体信息
-		if(admin==null){
+		String username=(String)request.getSession().getAttribute("user"); //通过session获取登陆管理员实体信息
+		if(username==null){
 			request.getRequestDispatcher("/WEB-INF/sys/login.jsp").forward(request, response);
 			return false;
 		}

@@ -1,5 +1,7 @@
 package org.javatribe.pinker.controller;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +13,7 @@ import org.javatribe.pinker.entity.Course;
 import org.javatribe.pinker.entity.Student;
 import org.javatribe.pinker.service.CourseService;
 import org.javatribe.pinker.service.StudentService;
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +53,34 @@ public class CourseReturnController {
 		}
 		return jsonArr;
 	}
+	
+	@RequestMapping(value ="/focus/{stu_id}/{crs_id}.json",method=RequestMethod.GET)
+	@ResponseBody
+	public JSONObject focusCourse(@PathVariable int stu_id,@PathVariable String crs_id){
+		JSONObject json = new JSONObject();
+		Student student = studentService.getById(stu_id);
+		if(student.getStu_attn_crs_ids()==null){
+			student.setStu_attn_crs_ids(crs_id);
+		}else{
+			String[] courses = student.getStu_attn_crs_ids().split(",");
+			for(String c: courses){
+				if(c.equals(crs_id)){
+					json.put("code", 1);
+					json.put("message","已关注该课程");
+					return json;
+					
+				}
+			}
+			
+			student.setStu_attn_crs_ids(student.getStu_attn_crs_ids()+","+String.valueOf(crs_id));
+		}
+		if(studentService.save(student)){
+			json.put("code",0);
+			json.put("message", "关注课程成功");
+		}
+		return json;
+	}
+	
 	
 	/**
 	 * 根据学生id取得所关注课程的idSet

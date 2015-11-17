@@ -65,7 +65,7 @@
 					<li><a href="#">XXX</a></li>
 				</ul>  -->
 			</div>
-			<div class="col-sm-10">
+			<div class="col-sm-11">
 				<h1 class="page-header">课程信息</h1>
 
 				<h3 class="sub-header">课程列表</h3>
@@ -86,7 +86,7 @@
 							<c:forEach items="${datas }" var="s" varStatus="status">
 								<tr>
 									<td>${s.crs_id }</td>
-									 <td>${s.crs_name }</td>
+									<td>${s.crs_name }</td>
 									<td>${s.crs_desc }</td>
 									<td>${s.crs_teacher_name }</td>
 									<td>

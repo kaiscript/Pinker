@@ -33,23 +33,20 @@ public class AdminInfoController {
 	@ResponseBody
 	public Map<String, String> validate(@RequestParam String account,
 			@RequestParam String password, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		Map<String, String> map = new HashMap<String, String>();
-		Admin admin = adminService.getAdminByUsername(account);
-		String getAuto = request.getParameter("autoLogin");// 记住我 checkbox 值，0没记住，1记住我
-		request.getSession().setAttribute("user", admin);
+		
 //		Cookie cookie = new Cookie("autoLogin",request.getSession().getId()+"AL"+getAuto);
 //		cookie.setPath("/");
 //		cookie.setMaxAge(24*3600);
 //		response.addCookie(cookie);
-		
-		if (admin != null && password.equals(admin.getAdmin_password())) {
-			request.getSession().setAttribute("autoLogin", getAuto);
-			
-			map.put("success", "true"); //json :key为success,value为true
+		Map<String, String> map = new HashMap<String, String>();
+		Admin admin = adminService.getAdminByUsername(account);
+			if (admin != null && password.equals(admin.getAdmin_password())) {
+					request.getSession().setAttribute("user", account); // 管理员验证成功则设置session
+					map.put("success", "true");
+					return map;
+			}
+			map.put("success", "false");
 			return map;
-		}
-		map.put("success", "false");
-		return map;
 	}
 	
 	@RequestMapping("/login")

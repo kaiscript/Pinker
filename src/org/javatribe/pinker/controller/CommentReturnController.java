@@ -134,7 +134,12 @@ public class CommentReturnController {
 		json.put("commentId", comment.getCmt_id());
 		json.put("userId", comment.getCmt_user_id());
 		json.put("userHeadImg", getHeadImg(comment.getCmt_user_id()));
-		json.put("userName", username);
+		if(comment.isCmt_is_anon()==true){
+			json.put("userName", "匿名用户");
+		}
+		else{
+			json.put("userName", username);
+		}
 		json.put("teaName", comment.getCourse().getCrs_teacher_name());
 		json.put("courseId", comment.getCourse().getCrs_id());
 		json.put("courseName", comment.getCourse().getCrs_name());
@@ -209,7 +214,12 @@ public class CommentReturnController {
 			json.put("commentId", c.getCmt_id());
 			json.put("userId", c.getCmt_user_id());
 			json.put("userHeadImg", getHeadImg(c.getCmt_user_id()));
-			json.put("userName", username);
+			if(c.isCmt_is_anon()==true){
+				json.put("userName", "匿名用户");
+			}
+			else{
+				json.put("userName", username);
+			}
 			json.put("teaName", c.getCourse().getCrs_teacher_name());
 			json.put("courseId", c.getCourse().getCrs_id());
 			json.put("courseName", c.getCourse().getCrs_name());
