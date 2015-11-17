@@ -14,6 +14,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.javatribe.pinker.common.Pager;
 import org.javatribe.pinker.dao.BaseDao;
+import org.springframework.stereotype.Repository;
 
 /**
  * BaseDaoImpl 定义DAO的通用操作的实现

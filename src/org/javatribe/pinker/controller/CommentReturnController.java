@@ -1,5 +1,6 @@
 package org.javatribe.pinker.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +9,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.javatribe.pinker.entity.Comment;
+import org.javatribe.pinker.entity.Course;
 import org.javatribe.pinker.entity.Student;
 import org.javatribe.pinker.service.CommentService;
 import org.javatribe.pinker.service.CourseService;
@@ -46,8 +48,43 @@ public class CommentReturnController {
 		this.courseService = courseService;
 	}
 	
-	public void insertComment(@PathVariable int cmt_user_id){
-		
+	/**
+	 * 插入评论
+	 * @param cmt_user_id
+	 * @param cmt_crs_label
+	 * @param cmt_content
+	 * @param cmt_star
+	 * @param cmt_is_anon
+	 * @param cmt_crs_id
+	 * @return
+	 */
+	@RequestMapping(value = "/insert/{cmt_user_id}/{cmt_crs_label}/{cmt_content}/{cmt_star}/{cmt_is_anon}/{cmt_crs_id}.json"
+			,method=RequestMethod.GET)
+	@ResponseBody
+	public JSONObject insertComment(@PathVariable int cmt_user_id,@PathVariable String cmt_crs_label,
+				@PathVariable String cmt_content,@PathVariable int cmt_star,
+				@PathVariable boolean cmt_is_anon,@PathVariable int cmt_crs_id){
+		JSONObject json = new JSONObject();
+		Comment comment = new Comment();
+		comment.setCmt_user_id(cmt_user_id);
+		comment.setCmt_time(new Date());
+		comment.setCmt_crs_label(cmt_crs_label);
+		comment.setCmt_content(cmt_content);
+		comment.setCmt_star(cmt_star);
+		comment.setCmt_is_anon(cmt_is_anon);
+		comment.setCmt_like_number(0);
+		comment.setCmt_against_number(0);
+		comment.setCmt_report_number(0);
+		Course course = courseService.getById(cmt_crs_id);
+		comment.setCourse(course);
+		if(commentService.save(comment)){
+			json.put("code", 0);
+			json.put("message", "评论成功");
+			return json;
+		}
+		json.put("code", 1);
+		json.put("message", "评论失败,请重试");
+		return json;
 	}
 	
 	
@@ -101,6 +138,7 @@ public class CommentReturnController {
 		json.put("teaName", comment.getCourse().getCrs_teacher_name());
 		json.put("courseId", comment.getCourse().getCrs_id());
 		json.put("courseName", comment.getCourse().getCrs_name());
+		json.put("courseDesc", comment.getCourse().getCrs_desc());
 		json.put("data", FormatTrans.getHowLongTime(comment.getCmt_time()));
 		json.put("content", comment.getCmt_content());
 		json.put("good", comment.getCmt_like_number());

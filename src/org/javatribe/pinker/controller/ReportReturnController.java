@@ -65,16 +65,32 @@ public class ReportReturnController {
 		if(report ==null){
 			report = new Report();
 			report.setComment(comment);
+			report.setRpt_cmt_person_id(String.valueOf(userId));
 			comment.setCmt_report_number(comment.getCmt_report_number()+1);//举报次数+1
-			commentService.save(comment);
 			reportService.save(report);
 			
 		}
 		else{
-			comment.setCmt_report_number(comment.getCmt_report_number()+1);
-			commentService.save(comment);
+			String[] persons = report.getRpt_cmt_person_id().split(",");
+			if(persons==null){
+				report.setRpt_cmt_person_id(report.getRpt_cmt_person_id()+","+userId);
+				comment.setCmt_report_number(comment.getCmt_report_number()+1);
+				reportService.update(report);
+			}
+			else{
+				for(String p:persons){
+					if(p.equals(String.valueOf(userId))){
+						json.put("code", 1);
+						json.put("message", "举报失败，你已举报此评论");
+						return json;
+					}
+				}
+				report.setRpt_cmt_person_id(report.getRpt_cmt_person_id()+","+userId);
+				comment.setCmt_report_number(comment.getCmt_report_number()+1);
+				reportService.update(report);
+			}
 		}
-		
+		commentService.save(comment);
 		json.put("code", 0);
 		json.put("message", "举报成功");
 		return json;

@@ -10,10 +10,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ include file="../head.html"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>课程信息列表</title>
-<script src="js/star-rating.min.js" type="text/javascript"></script>
 <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+<script src="js/star-rating.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function submitPager(index) {
 		$(document).ready(function() {
@@ -49,7 +50,7 @@
 	
 </script>
 </head>
-<%@ include file="../head.html"%>
+
 <body>
 
 	<!-- 引入顶部导航栏 -->
