@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/message")
-public class MessageController {
+public class MessageReturnController {
 
 	private CommentService commentService;
 	private StudentService studentService;
