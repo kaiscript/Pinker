@@ -45,7 +45,7 @@
 </script>
 
 <%@ include file="head.html"%>
-<title>登录</title>
+<title><h2><center>登 录</center></h2></title>
 </head>
 <body>
 	<div class="col-md-4"></div>
@@ -54,7 +54,7 @@
 		<br> <br> <br>
 
 		<form action="javascript:validate()">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">登陆</h2>
 			<input type="text" id="account" class="form-control" name="account"
 				placeholder="Account"> <br> <input type="password"
 				id="password" class="form-control" name="password"
