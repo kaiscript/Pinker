@@ -133,12 +133,13 @@ public class CommentReturnController {
 		String username = getName(comment.getCmt_user_id());
 		json.put("commentId", comment.getCmt_id());
 		json.put("userId", comment.getCmt_user_id());
-		json.put("userHeadImg", getHeadImg(comment.getCmt_user_id()));
 		if(comment.isCmt_is_anon()==true){
 			json.put("userName", "匿名用户");
+			json.put("userHeadImg", "http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=803d7defb83eb1354492bfbf932e84e5/9213b07eca8065380ce0f51493dda144ad3482aa.jpg");
 		}
 		else{
 			json.put("userName", username);
+			json.put("userHeadImg", getHeadImg(comment.getCmt_user_id()));
 		}
 		json.put("teaName", comment.getCourse().getCrs_teacher_name());
 		json.put("courseId", comment.getCourse().getCrs_id());
@@ -216,9 +217,11 @@ public class CommentReturnController {
 			json.put("userHeadImg", getHeadImg(c.getCmt_user_id()));
 			if(c.isCmt_is_anon()==true){
 				json.put("userName", "匿名用户");
+				json.put("userHeadImg", "http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=803d7defb83eb1354492bfbf932e84e5/9213b07eca8065380ce0f51493dda144ad3482aa.jpg");
 			}
 			else{
 				json.put("userName", username);
+				json.put("userHeadImg", getHeadImg(c.getCmt_user_id()));
 			}
 			json.put("teaName", c.getCourse().getCrs_teacher_name());
 			json.put("courseId", c.getCourse().getCrs_id());

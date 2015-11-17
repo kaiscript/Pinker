@@ -93,6 +93,7 @@ public class UserReturnController {
 				s.setStu_regist_time(new Date());
 				s.setStu_pw_answer(pw_answer);
 				s.setStu_pw_question(pw_question);
+				s.setStu_head_img("http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg");
 
 				isScuccess = studentService.save(s);
 
@@ -112,6 +113,7 @@ public class UserReturnController {
 				t.setTch_regist_time(new Date());
 				t.setTch_pw_answer(pw_answer);
 				t.setTch_pw_question(pw_question);
+				t.setTch_head_img("http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg");
 
 				isScuccess = teacherService.save(t);
 			}
