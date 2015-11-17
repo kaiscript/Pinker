@@ -271,7 +271,7 @@
 						<div class="form-group">
 							<label for="stuId" class="col-sm-3 control-label">评价内容：</label>
 							<div class="col-sm-6">
-								 <input type="text" class="form-control" value="形象生动，黑板板书233333" disabled="false"> 
+								 <input type="text" class="form-control" value="老师黑板板书，讲课方式生动形象。把高深的数学知识讲得非常容易理解" disabled="false"> 
 							</div>
 						</div>
 						<div class="form-group">

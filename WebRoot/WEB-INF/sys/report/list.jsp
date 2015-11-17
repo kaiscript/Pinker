@@ -69,7 +69,7 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>评价编号</th>
+								<th>序号</th>
 								<th>评价所属课程</th>
 								<th>课程教师</th>
 								<th>评价内容</th>
@@ -80,7 +80,7 @@
 							<c:set var="datas" value="${reportPager.datas }"/>
 							<c:forEach items="${datas }" var="r" varStatus="status">
 								<tr id="${status.index }">
-									<td>${r.comment.cmt_id }</td>
+									<td>${status.index+1 }</td>
 									<td>${r.comment.course.crs_name }</td>
 									<td>${r.comment.course.crs_teacher_name }</td>
 									<td>${r.comment.cmt_content }</td>
