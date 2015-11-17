@@ -54,7 +54,7 @@
 		<br> <br> <br>
 
 		<form action="javascript:validate()">
-			<h2 class="form-signin-heading">登陆</h2>
+			<h1 class="form-signin-heading" style="font-family:微软雅黑"><center><img alt="" src="pic/logo.png" width="50" > <font >登 陆</font></center></h1><br/>
 			<input type="text" id="account" class="form-control" name="account"
 				placeholder="Account"> <br> <input type="password"
 				id="password" class="form-control" name="password"
@@ -64,7 +64,7 @@
 				</label> -->
 			</div>
 			<button id="button" class="btn btn-lg btn-primary btn-block"
-				type="submit" onclick="validate()">Sign in</button>
+				type="submit" onclick="validate()">登陆</button>
 			<input type="hidden" id="autoLogin" name="autoLogin" value="0">	
 		</form>
 		<form id="loginForm" class="form-signin" action="validate/login">
